@@ -1,7 +1,7 @@
 # Личный проект «Киноман» [![Build status][travis-image]][travis-url]
 
 * Студент: [Roman Andreev](https://up.htmlacademy.ru/ecmascript/10/user/590097).
-* Наставник: `Неизвестно`.
+* Наставник: [Artyom Prikhodko](https://htmlacademy.ru/profile/id1012525).
 
 ---
 
