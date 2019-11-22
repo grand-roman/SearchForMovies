@@ -35,9 +35,6 @@ const sort = main.querySelector(`.sort`);
 const films = main.querySelector(`.films`);
 const filmsDetails = document.body.querySelector(`.film-details`);
 
-/**
- * Add cards of film.
- */
 const addFilmsCards = () => {
   const filmsCards = films.querySelectorAll(`.film-card`);
   filmsCards.forEach((node) => {
