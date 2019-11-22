@@ -1,628 +1,67 @@
-'use strict';
 
-const filmTitles = [
-  {
-    title: `All movies. Upcoming`,
-    isVisuallyHidden: true,
-    isExtra: false,
-    isButton: true,
-    films: [1, 2, 3, 4, 5]
-  },
-  {
-    title: `Top rated`,
-    isVisuallyHidden: false,
-    isExtra: true,
-    isButton: false,
-    films: [1, 2]
-  },
-  {
-    title: `Most commented`,
-    isVisuallyHidden: false,
-    isExtra: true,
-    isButton: false,
-    films: [1, 2]
-  }
-];
+import {
+  getSearchTemplate
+} from './components/search-template.js';
+import {
+  getProfileTemplate
+} from './components/profile-template.js';
+import {
+  getMainNavigationTemplate
+} from './components/main-navigation-template.js';
+import {
+  getSortTemplate
+} from './components/sort-template.js';
+import {
+  getFilmsListTemplate
+} from './components/film-list-template.js';
+import {
+  getFilmDetailsTemplate
+} from './components/film-details-template.js';
+import {
+  render
+} from './utils.js';
+import {
+  sortType,
+  filmTitles
+} from './data.js';
 
-const sortType = {
-  'default': true,
-  'date': false,
-  'rating': false
-};
-
-const render = (container, template, place = `beforeend`) => {
-  container.insertAdjacentHTML(place, template);
-};
-
-const getButtonShowMoreTemplate = () => {
-  return (`
-  <button class="films-list__show-more">
-    Show more
-  </button>`);
-};
-
-const getFilmCardTemplate = () => {
-  return (`
-  <article class="film-card">
-  <h3 class="film-card__title">
-    The Dance of Life
-  </h3>
-  <p class="film-card__rating">
-    8.3
-  </p>
-  <p class="film-card__info">
-    <span class="film-card__year">1929</span>
-    <span class="film-card__duration">1h 55m</span>
-    <span class="film-card__genre">Musical</span>
-  </p>
-  <img src="images/posters/the-dance-of-life.jpg"
-    alt="" class="film-card__poster"
-  >
-  <p class="film-card__description">
-    Burlesque comic Ralph "Skid" Johnson (Skelly), and specialty dancer Bonny Lee King (Carroll), end up together on a cold, rainy night at a tr…
-  </p>
-  <a class="film-card__comments">
-    5 comments
-  </a>
-  <form class="film-card__controls">
-    <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist">
-      Add to watchlist
-    </button>
-    <button class="film-card__controls-item button film-card__controls-item--mark-as-watched">
-      Mark as watched
-    </button>
-    <button class="film-card__controls-item button film-card__controls-item--favorite">
-      Mark as favorite
-    </button>
-  </form>
-</article>`);
-};
-
-const getFilmDetailsTemplate = () => {
-  return (`
-  <form class="film-details__inner"
-    action=""
-    method="get"
-    >
-    <div class="form-details__top-container">
-      <div class="film-details__close">
-        <button class="film-details__close-btn" 
-          type="button">
-          close
-        </button>
-      </div>
-      <div class="film-details__info-wrap">
-        <div class="film-details__poster">
-          <img class="film-details__poster-img"
-            src="images/posters/the-great-flamarion.jpg"
-            alt=""
-          >
-          <p class="film-details__age">18+</p>
-        </div>
-        <div class="film-details__info">
-          <div class="film-details__info-head">
-            <div class="film-details__title-wrap">
-              <h3 class="film-details__title">
-                The Great Flamarion
-              </h3>
-              <p class="film-details__title-original">
-                Original: The Great Flamarion
-              </p>
-            </div>
-            <div class="film-details__rating">
-              <p class="film-details__total-rating">8.9</p>
-            </div>
-          </div>
-          <table class="film-details__table">
-            <tr class="film-details__row">
-              <td class="film-details__term">Director</td>
-              <td class="film-details__cell">Anthony Mann</td>
-            </tr>
-            <tr class="film-details__row">
-              <td class="film-details__term">
-                Writers
-              </td>
-              <td class="film-details__cell">
-                Anne Wigton, Heinz Herald, Richard Weil
-              </td>
-            </tr>
-            <tr class="film-details__row">
-              <td class="film-details__term">
-                Actors
-              </td>
-              <td class="film-details__cell">
-                Erich von Stroheim, Mary Beth Hughes, Dan Duryea
-              </td>
-            </tr>
-            <tr class="film-details__row">
-              <td class="film-details__term">
-                Release Date
-              </td>
-              <td class="film-details__cell">
-                30 March 1945
-              </td>
-            </tr>
-            <tr class="film-details__row">
-              <td class="film-details__term">
-                Runtime
-              </td>
-              <td class="film-details__cell">
-                1h 18m
-              </td>
-            </tr>
-            <tr class="film-details__row">
-              <td class="film-details__term">
-                Country
-              </td>
-              <td class="film-details__cell">
-                USA
-              </td>
-            </tr>
-            <tr class="film-details__row">
-              <td class="film-details__term">
-                Genres
-              </td>
-              <td class="film-details__cell">
-                <span class="film-details__genre">
-                  Drama
-                </span>
-                <span class="film-details__genre">
-                  Film-Noir
-                </span>
-                <span class="film-details__genre">
-                  Mystery
-                </span>
-              </td>
-            </tr>
-          </table>
-          <p class="film-details__film-description">
-            The film opens following a murder at a cabaret in Mexico City in 1936, and then presents the events leading up to it in flashback. The Great Flamarion (Erich von Stroheim) is an arrogant, friendless, and misogynous marksman who displays his trick gunshot act in the vaudeville circuit. His show features a beautiful assistant, Connie (Mary Beth Hughes) and her drunken husband Al (Dan Duryea), Flamarion's other assistant. Flamarion falls in love with Connie, the movie's femme fatale, and is soon manipulated by her into killing her no good husband during one of their acts.
-          </p>
-        </div>
-      </div>
-      <section class="film-details__controls">
-        <input type="checkbox"
-          class="film-details__control-input visually-hidden"
-          id="watchlist"
-          name="watchlist"
-         >
-        <label for="watchlist"
-          class="film-details__control-label
-            film-details__control-label--watchlist">
-            Add to watchlist
-         </label>
-        <input type="checkbox"
-          class="film-details__control-input visually-hidden"
-          id="watched"
-          name="watched">
-        <label for="watched" 
-          class="film-details__control-label 
-          film-details__control-label--watched">
-          Already watched
-        </label>
-        <input type="checkbox"
-          class="film-details__control-input
-          visually-hidden"
-          id="favorite"
-          name="favorite">
-        <label for="favorite"
-          class="film-details__control-label
-          film-details__control-label--favorite">
-          Add to favorites
-        </label>
-      </section>
-    </div>
-    <div class="form-details__bottom-container">
-      <section class="film-details__comments-wrap">
-        <h3 class="film-details__comments-title">
-          Comments 
-          <span class="film-details__comments-count">4</span>
-        </h3>
-        <ul class="film-details__comments-list">
-          <li class="film-details__comment">
-            <span class="film-details__comment-emoji">
-              <img src="images/emoji/smile.png"
-                width="55"
-                height="55"
-                alt="emoji"
-              >
-            </span>
-            <div>
-              <p class="film-details__comment-text">
-                Interesting setting and a good cast
-              </p>
-              <p class="film-details__comment-info">
-                <span class="film-details__comment-author">
-                  Tim Macoveev
-                </span>
-                <span class="film-details__comment-day">
-                  3 days ago
-                </span>
-                <button class="film-details__comment-delete">
-                  Delete
-                </button>
-              </p>
-            </div>
-          </li>
-          <li class="film-details__comment">
-            <span class="film-details__comment-emoji">
-              <img src="images/emoji/sleeping.png"
-                width="55"
-                height="55"
-                alt="emoji"
-              >
-            </span>
-            <div>
-              <p class="film-details__comment-text">
-                Booooooooooring
-              </p>
-              <p class="film-details__comment-info">
-                <span class="film-details__comment-author">
-                  John Doe
-                </span>
-                <span class="film-details__comment-day">
-                  2 days ago
-                </span>
-                <button class="film-details__comment-delete">Delete</button>
-              </p>
-            </div>
-          </li>
-          <li class="film-details__comment">
-            <span class="film-details__comment-emoji">
-              <img src="images/emoji/puke.png"
-                width="55"
-                height="55"
-                alt="emoji"
-              >
-            </span>
-            <div>
-              <p class="film-details__comment-text">
-                Very very old. Meh
-              </p>
-              <p class="film-details__comment-info">
-                <span class="film-details__comment-author">
-                  John Doe
-                </span>
-                <span class="film-details__comment-day">
-                  2 days ago
-                </span>
-                <button class="film-details__comment-delete">
-                  Delete
-                </button>
-              </p>
-            </div>
-          </li>
-          <li class="film-details__comment">
-            <span class="film-details__comment-emoji">
-              <img src="images/emoji/angry.png"
-                width="55"
-                height="55"
-                alt="emoji"
-              >
-            </span>
-            <div>
-              <p class="film-details__comment-text">
-                Almost two hours? Seriously?
-              </p>
-              <p class="film-details__comment-info">
-                <span class="film-details__comment-author">
-                  John Doe
-                </span>
-                <span class="film-details__comment-day">
-                  Today
-                </span>
-                <button class="film-details__comment-delete">
-                  Delete
-                </button>
-              </p>
-            </div>
-          </li>
-        </ul>
-        <div class="film-details__new-comment">
-          <div for="add-emoji"
-            class="film-details__add-emoji-label">
-          </div>
-          <label class="film-details__comment-label">
-            <textarea class="film-details__comment-input"
-              placeholder="Select reaction below and write comment here" 
-              name="comment">
-            </textarea>
-          </label>
-          <div class="film-details__emoji-list">
-            <input class="film-details__emoji-item visually-hidden"
-              name="comment-emoji"
-              type="radio"
-              id="emoji-smile"
-              value="sleeping"
-            >
-            <label class="film-details__emoji-label"
-              for="emoji-smile">
-              <img src="images/emoji/smile.png"
-                width="30"
-                height="30"
-                alt="emoji"
-              >
-            </label>
-            <input class="film-details__emoji-item visually-hidden"
-              name="comment-emoji"
-              type="radio"
-              id="emoji-sleeping"
-              value="neutral-face"
-            >
-            <label class="film-details__emoji-label"
-              for="emoji-sleeping">
-              <img src="images/emoji/sleeping.png"
-                width="30"
-                height="30"
-                alt="emoji"
-              >
-            </label>
-            <input class="film-details__emoji-item visually-hidden"
-              name="comment-emoji"
-              type="radio"
-              id="emoji-gpuke"
-              value="grinning"
-            >
-            <label class="film-details__emoji-label"
-              for="emoji-gpuke">
-              <img src="images/emoji/puke.png"
-                width="30"
-                height="30"
-                alt="emoji"
-              >
-            </label>
-            <input class="film-details__emoji-item visually-hidden"
-              name="comment-emoji"
-              type="radio"
-              id="emoji-angry"
-              value="grinning"
-            >
-            <label class="film-details__emoji-label"
-              for="emoji-angry">
-              <img src="images/emoji/angry.png"
-                width="30"
-                height="30"
-                alt="emoji"
-              >
-            </label>
-          </div>
-        </div>
-      </section>
-    </div>
-  </form>`);
-};
-
-const filmListTemplate = (obj) => {
-  return (`
-  <section class="films-list${obj.isExtra ? `--extra` : ``}">
-    <h2 class="films-list__title 
-      ${obj.isVisuallyHidden ? `visually-hidden` : ``}">
-      ${obj.title}
-    </h2>
-    <div class="films-list__container">
-      ${obj.films.map(() => getFilmCardTemplate().trim()).join(``)}
-    </div>
-    ${obj.isButton ? getButtonShowMoreTemplate() : ``}
-  </section>`);
-};
-
-const getMainNavigationTemplate = () => {
-  return (`
-    <a href="#all"
-      class="main-navigation__item">
-      All movies
-    </a>
-    <a href="#watchlist"
-      class="main-navigation__item">
-      Watchlist 
-      <span class="main-navigation__item-count">13</span>
-    </a>
-    <a href="#history"
-      class="main-navigation__item">
-      History 
-      <span class="main-navigation__item-count">4</span>
-    </a>
-    <a href="#favorites"
-      class="main-navigation__item">
-      Favorites
-      <span class="main-navigation__item-count">8</span>
-    </a>
-    <a href="#stats"
-      class="main-navigation__item
-        main-navigation__item--additional
-        main-navigation__item--active">
-      Stats
-    </a>
-`);
-};
-
-const getProfileTemplate = () => {
-  return (`
-    <p class="profile__rating">
-      Movie Buff
-    </p>
-    <img class="profile__avatar"
-      src="images/bitmap@2x.png"
-      alt="Avatar"
-      width="35"
-      height="35"
-    >`);
-};
-
-const getSearchTemplate = () => {
-  return (`
-    <input type="text"
-      name="search"
-      class="search__field"
-      placeholder="Search movies"
-      value="hello brain"
-    >
-    <svg fill="#7171D8"
-      class="search__film-icon"
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="19"
-      viewBox="0 0 20 19">
-      <path
-        fill-rule="nonzero"
-        d="M2 0v4.524h2.833V0h11.334v4.524H19V0h1v19h-1v-4.524h-2.833V19H4.833v-4.524H2V19H0V0h2zm0
-          7.238v4.524h2.833V7.238H2zm14.167 0v4.524H19V7.238h-2.833z"
-      />
-    </svg>
-    <button 
-      type="submit"
-      class="visually-hidden">
-      Search
-    </button>
-    <button 
-      class="search__reset"
-      type="reset">
-      Reset
-    </button>`);
-};
-
-// const getStatisticTemplate = () => {
-//   return (`
-//   <p class="statistic__rank">
-//     Your rank
-//     <img class="statistic__img"
-//       src="images/bitmap@2x.png"
-//       alt="Avatar"
-//       width="35" height="35">
-//     <span class="statistic__rank-label">
-//       Sci-Fighter
-//     </span>
-//   </p>
-//   <form action="https://echo.htmlacademy.ru/"
-//     method="get"
-//     class="statistic__filters">
-//     <p class="statistic__filters-description">
-//       Show stats:
-//     </p>
-//     <input type="radio"
-//       class="statistic__filters-input visually-hidden"
-//       name="statistic-filter"
-//       id="statistic-all-time"
-//       value="all-time"
-//       checked
-//     >
-//     <label for="statistic-all-time"
-//       class="statistic__filters-label">
-//       All time
-//     </label>
-//     <input type="radio"
-//       class="statistic__filters-input visually-hidden"
-//       name="statistic-filter"
-//       id="statistic-today"
-//       value="today"
-//     >
-//     <label for="statistic-today"
-//       class="statistic__filters-label">
-//       Today
-//     </label>
-//     <input type="radio"
-//       class="statistic__filters-input visually-hidden"
-//       name="statistic-filter"
-//       id="statistic-week"
-//       value="week"
-//     >
-//     <label for="statistic-week"
-//       class="statistic__filters-label">
-//       Week
-//     </label>
-//     <input type="radio"
-//       class="statistic__filters-input visually-hidden"
-//       name="statistic-filter"
-//       id="statistic-month"
-//       value="month"
-//     >
-//     <label for="statistic-month"
-//       class="statistic__filters-label">
-//       Month
-//     </label>
-//     <input type="radio"
-//       class="statistic__filters-input visually-hidden"
-//       name="statistic-filter"
-//       id="statistic-year"
-//       value="year"
-//     >
-//     <label for="statistic-year"
-//       class="statistic__filters-label">
-//       Year
-//     </label>
-//   </form>
-//   <ul class="statistic__text-list">
-//     <li class="statistic__text-item">
-//       <h4 class="statistic__item-title">You watched</h4>
-//       <p class="statistic__item-text">
-//         22
-//         <span class="statistic__item-description">movies</span>
-//       </p>
-//     </li>
-//     <li class="statistic__text-item">
-//       <h4 class="statistic__item-title">Total duration</h4>
-//       <p class="statistic__item-text">
-//         130
-//         <span class="statistic__item-description">h</span>
-//         22
-//         <span class="statistic__item-description">m</span>
-//       </p>
-//     </li>
-//
-//     <li class="statistic__text-item">
-//       <h4 class="statistic__item-title">Top genre</h4>
-//       <p class="statistic__item-text">Sci-Fi</p>
-//     </li>
-//   </ul>
-//   <div class="statistic__chart-wrap">
-//     <canvas class="statistic__chart" width="1000"></canvas>
-//   </div>
-//   `);
-// };
-
-const getSortTemplate = (obj) => {
-  return (Object.keys(obj).map((key) => (
-    `<li>
-      <a href="#" class="sort__button${obj[key] ? ` sort__button--active` : ``}">
-        Sort by ${key}
-      </a>
-    </li>`.trim())).join(``)
-  );
-};
-
-const header = document.querySelector(`.header`);
+const header = document.body.querySelector(`.header`);
 const search = header.querySelector(`.search`);
 const profile = header.querySelector(`.profile`);
-const main = document.querySelector(`.main`);
+const main = document.body.querySelector(`.main`);
 const mainNavigation = main.querySelector(`.main-navigation`);
-// const statistic = main.querySelector(`.statistic`);
+
 const sort = main.querySelector(`.sort`);
 const films = main.querySelector(`.films`);
+const filmsDetails = document.body.querySelector(`.film-details`);
 
-const filmsDetails = document.querySelector(`.film-details`);
-
+/**
+ * Add cards of film.
+ */
+const addFilmsCards = () => {
+  const filmsCards = films.querySelectorAll(`.film-card`);
+  filmsCards.forEach((node) => {
+    node.addEventListener(`click`, () => {
+      filmsDetails.classList.remove(`visually-hidden`);
+    });
+  });
+};
 render(filmsDetails, getFilmDetailsTemplate());
 
 const filmDetailsCloseBtn = filmsDetails.querySelector(`.film-details__close-btn`);
+filmDetailsCloseBtn.addEventListener(`click`, () => {
+  filmsDetails.classList.add(`visually-hidden`);
+});
 
 render(search, getSearchTemplate());
 render(profile, getProfileTemplate());
 
 render(mainNavigation, getMainNavigationTemplate());
-// render(statistic, getStatisticTemplate());
+
 render(sort, getSortTemplate(sortType));
 
-filmTitles.forEach((obj)=> {
-  render(films, filmListTemplate(obj));
+filmTitles.forEach((obj) => {
+  render(films, getFilmsListTemplate(obj));
 });
 
-const filmCard = films.querySelectorAll(`.film-card`);
-filmCard.forEach((node) => {
-  node.addEventListener(`click`, () => {
-    filmsDetails.classList.remove(`visually-hidden`);
-  });
-});
-
-filmDetailsCloseBtn.addEventListener(`click`, () => {
-  filmsDetails.classList.add(`visually-hidden`);
-});
+addFilmsCards();
