@@ -1,4 +1,3 @@
-
 import {
   getSearchTemplate
 } from './components/search-template.js';
@@ -15,50 +14,84 @@ import {
   getFilmsListTemplate
 } from './components/film-list-template.js';
 import {
+  getFilmCardTemplate
+} from './components/film-card-template.js';
+import {
   getFilmDetailsTemplate
 } from './components/film-details-template.js';
+import {
+  getFooterTemplate
+} from './components/footer-template.js';
 import {
   render
 } from './utils.js';
 import {
-  sortType,
-  filmTitles
+  sortTypes,
+  controlsTypes,
+  emojiList,
+  menuTypes,
+  filmTitles,
+  filmCards,
+  countFilmCards,
+  randomFilmCard,
+  userRating
 } from './data.js';
 
-const header = document.body.querySelector(`.header`);
+const body = document.querySelector(`body`);
+const header = body.querySelector(`.header`);
 const search = header.querySelector(`.search`);
 const profile = header.querySelector(`.profile`);
-const main = document.body.querySelector(`.main`);
+const main = body.querySelector(`.main`);
 const mainNavigation = main.querySelector(`.main-navigation`);
-
 const sort = main.querySelector(`.sort`);
 const films = main.querySelector(`.films`);
-const filmsDetails = document.body.querySelector(`.film-details`);
+const filmsDetails = body.querySelector(`.film-details`);
+const footer = body.querySelector(`.footer`);
 
+/**
+ * Add cards of film.
+ */
 const addFilmsCards = () => {
   const filmsCards = films.querySelectorAll(`.film-card`);
-  filmsCards.forEach((node) => {
-    node.addEventListener(`click`, () => {
+  filmsCards.forEach((filmsCard) => {
+    filmsCard.addEventListener(`click`, () => {
       filmsDetails.classList.remove(`visually-hidden`);
     });
   });
 };
-render(filmsDetails, getFilmDetailsTemplate());
 
+render(filmsDetails, getFilmDetailsTemplate(randomFilmCard, controlsTypes, emojiList));
 const filmDetailsCloseBtn = filmsDetails.querySelector(`.film-details__close-btn`);
 filmDetailsCloseBtn.addEventListener(`click`, () => {
   filmsDetails.classList.add(`visually-hidden`);
 });
 
 render(search, getSearchTemplate());
-render(profile, getProfileTemplate());
+render(profile, getProfileTemplate(userRating));
+render(mainNavigation, getMainNavigationTemplate(menuTypes));
 
-render(mainNavigation, getMainNavigationTemplate());
+render(sort, getSortTemplate(sortTypes));
 
-render(sort, getSortTemplate(sortType));
-
-filmTitles.forEach((obj) => {
-  render(films, getFilmsListTemplate(obj));
+filmTitles.forEach((filmTitle) => {
+  render(films, getFilmsListTemplate(filmTitle));
 });
 
 addFilmsCards();
+
+const filmsListContainer = films.querySelector(`.films-list`)
+  .querySelector(`.films-list__container`);
+const filmsListShowMore = films.querySelector(`.films-list__show-more`);
+
+/**
+ * Add more card.
+ */
+const addMoreCards = () => {
+  filmCards.slice(5, 10).forEach((filmCard) => {
+    render(filmsListContainer, getFilmCardTemplate(filmCard));
+  });
+  filmsListShowMore.classList.add(`visually-hidden`);
+  filmsListShowMore.removeEventListener(`click`, addMoreCards);
+};
+
+filmsListShowMore.addEventListener(`click`, addMoreCards);
+render(footer, getFooterTemplate(countFilmCards));
