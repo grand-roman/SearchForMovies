@@ -1,7 +1,4 @@
-import {
-  getRandomValueMinMax,
-  compareRandom
-} from './utils.js';
+import {getRandomValueMinMax, compareRandom} from './utils.js';
 
 const sortTypes = {
   default: true,
@@ -177,19 +174,13 @@ const comments = [
   }
 ];
 
-/**
- * Return random rating for interval from 1 to 10.
- * @return {number}
- */
+
 const getRating = () => {
   const rating = getRandomValueMinMax(1, 10, 1);
   return rating > 10 ? Math.floor(rating) : rating;
 };
 
-/**
- * Return card of film.
- * @return {object}
- */
+
 const getFilmCard = () => {
   return {
     genres: genres.sort(compareRandom).slice(0,
@@ -215,11 +206,7 @@ const getFilmCard = () => {
   };
 };
 
-/**
- * Return array of cards of films.
- * @param {number} filmsCount
- * @return {array}
- */
+
 const getFilmCards = (filmsCount) => {
   const filmCards = [];
   for (let i = 0; i < filmsCount; i++) {

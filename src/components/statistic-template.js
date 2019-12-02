@@ -1,10 +1,4 @@
-/**
- * Return template for statistic.
- * @param {number} userRating
- * @param {array} filters
- * @param {array} textList
- * @return {string}
- */
+
 const getStatisticTemplate = (userRating, filters, textList) => {
   return `
     <p class="statistic__rank">
@@ -34,7 +28,7 @@ const getStatisticTemplate = (userRating, filters, textList) => {
       <label for="statistic-${attribute}"
         class="statistic__filters-label">
         ${title}
-      </label>`).trim()).join(``)} 
+      </label>`).trim()).join(``)}
     </form>
     <ul class="statistic__text-list">${textList.map(({title, texts}) => (`
       <li class="statistic__text-item">

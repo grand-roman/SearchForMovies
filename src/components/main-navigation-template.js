@@ -1,8 +1,4 @@
-/**
- * Return template for main-navigation.
- * @param {array} menuTypes
- * @return {string}
- */
+
 const getMainNavigationTemplate = (menuTypes) => {
   return menuTypes.map(({link, modifiers, title, filmsCount}) => (`
     <a href="#${link}"

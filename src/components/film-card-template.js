@@ -1,8 +1,4 @@
-/**
- * Return template for card of film.
- * @param {object} filmCard
- * @return {string}
- */
+
 const getFilmCardTemplate = ({title, rating, year, duration, genres, img,
   description, countComments}) => {
   return `
@@ -25,18 +21,18 @@ const getFilmCardTemplate = ({title, rating, year, duration, genres, img,
         ${description}
       </p>
       <a class="film-card__comments">
-        ${countComments} comment${countComments === 1 ? `` : `s`}   
-      </a>      
+        ${countComments} comment${countComments === 1 ? `` : `s`}
+      </a>
       <form class="film-card__controls">
-        <button class="film-card__controls-item button 
+        <button class="film-card__controls-item button
         film-card__controls-item--add-to-watchlist">
           Add to watchlist
         </button>
-        <button class="film-card__controls-item button 
+        <button class="film-card__controls-item button
         film-card__controls-item--mark-as-watched">
           Mark as watched
         </button>
-        <button class="film-card__controls-item button 
+        <button class="film-card__controls-item button
         film-card__controls-item--favorite">
           Mark as favorite
         </button>

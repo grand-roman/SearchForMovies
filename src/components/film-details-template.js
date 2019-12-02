@@ -1,8 +1,4 @@
-/**
- * Return template comment fo film.
- * @param {object} emojiList
- * @return {string}
- */
+
 const getFilmCommentTemplate = (emojiList) => {
   return `
     <div class="film-details__emoji-list">
@@ -24,11 +20,6 @@ const getFilmCommentTemplate = (emojiList) => {
     </div>`;
 };
 
-/**
- * Return comment list.
- * @param {array} comments
- * @return {string}
- */
 const getCommentListTemplate = (comments) => {
   return `
     <ul class="film-details__comments-list">
@@ -61,13 +52,7 @@ const getCommentListTemplate = (comments) => {
     </ul>`;
 };
 
-/**
- * Return template for details of film.
- * @param {object} filmCard
- * @param {object} controlsTypes
- * @param {array} emojiList
- * @return {string}
- */
+
 const getFilmDetailsTemplate = ({img, age, title, rating, director, writers,
   actors, year, duration, country, genres, description, comments},
 controlsTypes, emojiList) => {
@@ -78,7 +63,7 @@ controlsTypes, emojiList) => {
       >
       <div class="form-details__top-container">
         <div class="film-details__close">
-          <button class="film-details__close-btn" 
+          <button class="film-details__close-btn"
             type="button">
             close
           </button>
@@ -147,7 +132,7 @@ controlsTypes, emojiList) => {
                   Country
                 </td>
                 <td class="film-details__cell">
-                  ${country}  
+                  ${country}
                 </td>
               </tr>
               <tr class="film-details__row">
@@ -175,11 +160,11 @@ controlsTypes, emojiList) => {
             class="film-details__control-label
               film-details__control-label--${type}">
               ${controlsTypes[type]}
-          </label>`)).join(``)}       
+          </label>`)).join(``)}
         </section>
       </div>
       <div class="form-details__bottom-container">
-        <section class="film-details__comments-wrap"> 
+        <section class="film-details__comments-wrap">
           <h3 class="film-details__comments-title">
             Comments
             <span class="film-details__comments-count">
@@ -187,16 +172,16 @@ controlsTypes, emojiList) => {
             </span>
           </h3>
           ${getCommentListTemplate(comments)}
-          <div class="film-details__new-comment"> 
+          <div class="film-details__new-comment">
             <div for="add-emoji"
               class="film-details__add-emoji-label">
             </div>
             <label class="film-details__comment-label">
               <textarea class="film-details__comment-input"
-                placeholder="Select reaction below and write comment here" 
+                placeholder="Select reaction below and write comment here"
                 name="comment"></textarea>
-            </label> 
-            ${getFilmCommentTemplate(emojiList)}         
+            </label>
+            ${getFilmCommentTemplate(emojiList)}
           </div>
         </section>
       </div>

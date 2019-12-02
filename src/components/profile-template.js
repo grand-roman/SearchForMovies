@@ -1,8 +1,4 @@
-/**
- * Return template for profile.
- * @param {number} userRating
- * @return {string}
- */
+
 const getProfileTemplate = (userRating) => {
   return `
     <p class="profile__rating">

@@ -1,8 +1,4 @@
-/**
- * Return template for sorting.
- * @param {object} sortType
- * @return {string}
- */
+
 const getSortTemplate = (sortType) => {
   return Object.keys(sortType).map((type) => (`
     <li>

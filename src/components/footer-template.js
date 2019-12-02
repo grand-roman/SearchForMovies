@@ -1,8 +1,4 @@
-/**
- * Return template for footer.
- * @param {number} countFilmCards
- * @return {string}
- */
+
 const getFooterTemplate = (countFilmCards) => {
   return `
     <section class="footer__logo logo logo--smaller">
