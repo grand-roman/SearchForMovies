@@ -152,25 +152,25 @@ const comments = [
     img: `./images/emoji/smile.png`,
     text: `Interesting setting and a good cast`,
     author: `Tim Macoveev`,
-    day: `3 days ago`
+    day: `26.11.2019`
   },
   {
     img: `./images/emoji/sleeping.png`,
     text: `Booooooooooring`,
     author: `John Doe`,
-    day: `2 days ago`
+    day: `21.11.2019`
   },
   {
     img: `./images/emoji/puke.png`,
     text: `Very very old. Meh`,
     author: `John Doe`,
-    day: `2 days ago`
+    day: `28.11.2019`
   },
   {
     img: `./images/emoji/angry.png`,
     text: `Almost two hours? Seriously?`,
     author: `John Doe`,
-    day: `Today`
+    day: `5.12.2019`
   }
 ];
 
