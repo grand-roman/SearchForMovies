@@ -1,7 +1,4 @@
-/**
- * Return template for search.
- * @return {string}
- */
+
 const getSearchTemplate = () => {
   return (`
     <input type="text"
@@ -22,12 +19,12 @@ const getSearchTemplate = () => {
           7.238v4.524h2.833V7.238H2zm14.167 0v4.524H19V7.238h-2.833z"
       />
     </svg>
-    <button 
+    <button
       type="submit"
       class="visually-hidden">
       Search
     </button>
-    <button 
+    <button
       class="search__reset"
       type="reset">
       Reset
