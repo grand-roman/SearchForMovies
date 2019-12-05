@@ -174,12 +174,32 @@ const comments = [
   }
 ];
 
+const filmsCategories = {
+  AllMoviesUpcoming: `All movies. Upcoming`,
+  TopRated: `Top rated`,
+  MostCommented: `Most commented`
+};
+
+const filmsCategoriesId = {
+  AllMoviesUpcoming: `AllMoviesUpcoming`,
+  TopRated: `TopRated`,
+  MostCommented: `MostCommented`
+};
 
 const getRating = () => {
   const rating = getRandomValueMinMax(1, 10, 1);
   return rating > 10 ? Math.floor(rating) : rating;
 };
 
+const getFilmCategoriesId = () => {
+  const categoriesId = [];
+  categoriesId.push(filmsCategoriesId.AllMoviesUpcoming);
+  if (getRandomValueMinMax(0, 1)) {
+    categoriesId.push(Object.entries(filmsCategoriesId)
+    .slice(1, 3)[getRandomValueMinMax(0, 1)][1]);
+  }
+  return categoriesId;
+};
 
 const getFilmCard = () => {
   return {
@@ -203,9 +223,9 @@ const getFilmCard = () => {
     country: countries[getRandomValueMinMax(0, countries.length - 1)],
     comments: comments.sort(compareRandom).slice(0,
         getRandomValueMinMax(1, comments.length - 1)),
+    categoriesId: getFilmCategoriesId()
   };
 };
-
 
 const getFilmCards = (filmsCount) => {
   const filmCards = [];
@@ -215,34 +235,44 @@ const getFilmCards = (filmsCount) => {
   return filmCards;
 };
 
-const filmCards = getFilmCards(titles.length);
-const randomFilmCard = filmCards.sort(compareRandom)[0];
-const countFilmCards = filmCards.length;
-const userRating = getRandomValueMinMax(0, titles.length);
+const filmsCards = getFilmCards(titles.length);
 
-const filmTitles = [
-  {
-    title: `All movies. Upcoming`,
+const getFilmsCardsPortion = () => {
+  let currentCount = 0;
+
+  return () => {
+    const filmCardsPortion = filmsCards.slice(currentCount, currentCount + 5);
+    currentCount += 5;
+    return filmCardsPortion;
+  };
+};
+
+const userRating = getRandomValueMinMax(0, titles.length);
+const countFilmCards = filmsCards.length;
+
+const filmLists = {
+  AllMoviesUpcoming: {
+    title: filmsCategories.AllMoviesUpcoming,
+    id: filmsCategoriesId.AllMoviesUpcoming,
     isVisuallyHidden: true,
     isExtra: false,
-    isButton: true,
-    films: filmCards.slice(0, 5)
+    isButton: `true`
   },
-  {
-    title: `Top rated`,
+  TopRated: {
+    title: filmsCategories.TopRated,
+    id: filmsCategoriesId.TopRated,
     isVisuallyHidden: false,
     isExtra: true,
-    isButton: false,
-    films: filmCards.slice(10, 12)
+    isButton: ``
   },
-  {
-    title: `Most commented`,
+  MostCommented: {
+    title: filmsCategories.MostCommented,
+    id: filmsCategoriesId.MostCommented,
     isVisuallyHidden: false,
     isExtra: true,
-    isButton: false,
-    films: filmCards.slice(12, 15)
+    isButton: ``
   }
-];
+};
 
 const menuTypes = [
   {
@@ -358,12 +388,13 @@ export {
   sortTypes,
   controlsTypes,
   emojiList,
-  filmTitles,
+  filmLists,
   menuTypes,
   statisticFilters,
   statisticTextList,
-  filmCards,
+  filmsCards,
   countFilmCards,
-  randomFilmCard,
-  userRating
+  userRating,
+  filmsCategoriesId,
+  getFilmsCardsPortion
 };

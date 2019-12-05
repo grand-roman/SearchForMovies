@@ -1,6 +1,6 @@
 
 const getProfileTemplate = (userRating) => {
-  return `
+  return (`
     <p class="profile__rating">
       ${userRating}
     </p>
@@ -9,7 +9,7 @@ const getProfileTemplate = (userRating) => {
       alt="Avatar"
       width="35"
       height="35"
-    >`;
+    >`);
 };
 
 export {

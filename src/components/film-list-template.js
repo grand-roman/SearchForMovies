@@ -1,19 +1,16 @@
-import {getButtonShowMoreTemplate} from './button-show-more-template.js';
-import {getFilmCardTemplate} from './film-card-template.js';
 
-const getFilmsListTemplate = ({isExtra, isVisuallyHidden, title, films,
-  isButton}) => {
-  return `
-    <section class="films-list${isExtra ? `--extra` : ``}">
+const getFilmsListTemplate = ({_isExtra, _isVisuallyHidden, _title,
+  _isButton, _id}) => {
+  return (`
+    <section id="${_id}" data-id="${_id}"
+      data-isbutton="${_isButton}"
+      class="films-list${_isExtra ? `--extra` : ``}">
       <h2 class="films-list__title
-        ${isVisuallyHidden ? `visually-hidden` : ``}">
-        ${title}
+        ${_isVisuallyHidden ? `visually-hidden` : ``}">
+        ${_title}
       </h2>
-      <div class="films-list__container">
-        ${films.map((film) => getFilmCardTemplate(film).trim()).join(``)}
-      </div>
-      ${isButton ? getButtonShowMoreTemplate() : ``}
-    </section>`;
+      <div class="films-list__container"></div>
+    </section>`);
 };
 
 export {

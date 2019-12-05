@@ -1,27 +1,27 @@
 
-const getFilmCardTemplate = ({title, rating, year, duration, genres, img,
-  description, countComments}) => {
-  return `
+const getFilmCardTemplate = ({_title, _rating, _year, _duration, _genres, _img,
+  _description, _countComments}) => {
+  return (`
     <article class="film-card">
       <h3 class="film-card__title">
-        ${title}
+        ${_title}
       </h3>
       <p class="film-card__rating">
-        ${rating}
+        ${_rating}
       </p>
       <p class="film-card__info">
-        <span class="film-card__year">${year}</span>
-        <span class="film-card__duration">${duration}</span>
-        <span class="film-card__genre">${genres[0]}</span>
+        <span class="film-card__year">${_year}</span>
+        <span class="film-card__duration">${_duration}</span>
+        <span class="film-card__genre">${_genres[0]}</span>
       </p>
-      <img src="${img}"
+      <img src="${_img}"
         alt="" class="film-card__poster"
       >
       <p class="film-card__description">
-        ${description}
+        ${_description}
       </p>
       <a class="film-card__comments">
-        ${countComments} comment${countComments === 1 ? `` : `s`}
+        ${_countComments} comment${_countComments === 1 ? `` : `s`}
       </a>
       <form class="film-card__controls">
         <button class="film-card__controls-item button
@@ -37,7 +37,7 @@ const getFilmCardTemplate = ({title, rating, year, duration, genres, img,
           Mark as favorite
         </button>
       </form>
-    </article>`;
+    </article>`);
 };
 
 export {

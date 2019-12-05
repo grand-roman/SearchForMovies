@@ -1,6 +1,6 @@
 
 const getFilmCommentTemplate = (emojiList) => {
-  return `
+  return (`
     <div class="film-details__emoji-list">
       ${emojiList.map(({id, value, img}) => (`<input
         class="film-details__emoji-item visually-hidden"
@@ -17,7 +17,7 @@ const getFilmCommentTemplate = (emojiList) => {
           alt="emoji"
         >
       </label>`)).join(``)}
-    </div>`;
+    </div>`);
 };
 
 const getCommentListTemplate = (comments) => {
@@ -52,11 +52,10 @@ const getCommentListTemplate = (comments) => {
     </ul>`;
 };
 
-
-const getFilmDetailsTemplate = ({img, age, title, rating, director, writers,
-  actors, year, duration, country, genres, description, comments},
-controlsTypes, emojiList) => {
-  return `
+const getFilmDetailsTemplate = ({_img, _age, _title, _rating, _director, _writers,
+  _actors, _year, _duration, _country, _genres, _description, _comments,
+  _controlsTypes, _emojiList}) => {
+  return (`
     <form class="film-details__inner"
       action=""
       method="get"
@@ -71,36 +70,36 @@ controlsTypes, emojiList) => {
         <div class="film-details__info-wrap">
           <div class="film-details__poster">
             <img class="film-details__poster-img"
-              src="${img}"
+              src="${_img}"
               alt=""
             >
-            <p class="film-details__age">${age}+</p>
+            <p class="film-details__age">${_age}+</p>
           </div>
           <div class="film-details__info">
             <div class="film-details__info-head">
               <div class="film-details__title-wrap">
                 <h3 class="film-details__title">
-                  ${title}
+                  ${_title}
                 </h3>
                 <p class="film-details__title-original">
-                  Original: ${title}
+                  Original: ${_title}
                 </p>
               </div>
               <div class="film-details__rating">
-                <p class="film-details__total-rating">${rating}</p>
+                <p class="film-details__total-rating">${_rating}</p>
               </div>
             </div>
             <table class="film-details__table">
               <tr class="film-details__row">
                 <td class="film-details__term">Director</td>
-                <td class="film-details__cell">${director}</td>
+                <td class="film-details__cell">${_director}</td>
               </tr>
               <tr class="film-details__row">
                 <td class="film-details__term">
                   Writers
                 </td>
                 <td class="film-details__cell">
-                  ${writers.map((writer) => writer).join(`, `)}
+                  ${_writers.map((writer) => writer).join(`, `)}
                 </td>
               </tr>
               <tr class="film-details__row">
@@ -108,7 +107,7 @@ controlsTypes, emojiList) => {
                   Actors
                 </td>
                 <td class="film-details__cell">
-                  ${actors.map((actor) => actor).join(`, `)}
+                  ${_actors.map((actor) => actor).join(`, `)}
                 </td>
               </tr>
               <tr class="film-details__row">
@@ -116,7 +115,7 @@ controlsTypes, emojiList) => {
                   Release Date
                 </td>
                 <td class="film-details__cell">
-                ${year}
+                ${_year}
                 </td>
               </tr>
               <tr class="film-details__row">
@@ -124,7 +123,7 @@ controlsTypes, emojiList) => {
                   Runtime
                 </td>
                 <td class="film-details__cell">
-                  ${duration}
+                  ${_duration}
                 </td>
               </tr>
               <tr class="film-details__row">
@@ -132,7 +131,7 @@ controlsTypes, emojiList) => {
                   Country
                 </td>
                 <td class="film-details__cell">
-                  ${country}
+                  ${_country}
                 </td>
               </tr>
               <tr class="film-details__row">
@@ -140,18 +139,18 @@ controlsTypes, emojiList) => {
                   Genres
                 </td>
                 <td class="film-details__cell">
-                  ${genres.map((genre) => (`<span class="film-details__genre">
+                  ${_genres.map((genre) => (`<span class="film-details__genre">
                     ${genre}</span>`)).join(``)}
                 </td>
               </tr>
             </table>
             <p class="film-details__film-description">
-              ${description}
+              ${_description}
             </p>
           </div>
         </div>
         <section class="film-details__controls">
-          ${Object.keys(controlsTypes).map((type) => (`<input type="checkbox"
+          ${Object.keys(_controlsTypes).map((type) => (`<input type="checkbox"
             class="film-details__control-input visually-hidden"
             id="${type}"
             name="${type}"
@@ -159,7 +158,7 @@ controlsTypes, emojiList) => {
           <label for="${type}"
             class="film-details__control-label
               film-details__control-label--${type}">
-              ${controlsTypes[type]}
+              ${_controlsTypes[type]}
           </label>`)).join(``)}
         </section>
       </div>
@@ -168,10 +167,10 @@ controlsTypes, emojiList) => {
           <h3 class="film-details__comments-title">
             Comments
             <span class="film-details__comments-count">
-              ${comments.length}
+              ${_comments.length}
             </span>
           </h3>
-          ${getCommentListTemplate(comments)}
+          ${getCommentListTemplate(_comments)}
           <div class="film-details__new-comment">
             <div for="add-emoji"
               class="film-details__add-emoji-label">
@@ -181,11 +180,11 @@ controlsTypes, emojiList) => {
                 placeholder="Select reaction below and write comment here"
                 name="comment"></textarea>
             </label>
-            ${getFilmCommentTemplate(emojiList)}
+            ${getFilmCommentTemplate(_emojiList)}
           </div>
         </section>
       </div>
-    </form>`;
+    </form>`);
 };
 
 export {
