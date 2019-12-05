@@ -53,8 +53,8 @@ const getCommentListTemplate = (comments) => {
 };
 
 const getFilmDetailsTemplate = (_img, _age, _title, _rating, _director, _writers,
-  _actors, _year, _duration, _country, _genres, _description, _comments,
-  _controlsTypes, _emojiList) => {
+    _actors, _year, _duration, _country, _genres, _description, _comments,
+    _controlsTypes, _emojiList) => {
   return (`
     <form class="film-details__inner"
       action=""
