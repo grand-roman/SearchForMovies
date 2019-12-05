@@ -35,7 +35,7 @@ const getStatisticTemplate = ({_userRating, _filters, _textList}) => {
         <h4 class="statistic__item-title">${title}</h4>
         <p class="statistic__item-text">
         ${texts.map(({isDescription, textTitle}) => (
-      isDescription ? `<span class="statistic__item-description">
+        isDescription ? `<span class="statistic__item-description">
           ${textTitle}</span>` : `${textTitle}`).trim()).join(``)}
         </p>
       </li>`).trim()).join(``)}
