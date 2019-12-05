@@ -12,7 +12,10 @@ class Statistic {
   }
 
   get template() {
-    return getStatisticTemplate(this);
+    return getStatisticTemplate(
+        this._userRating,
+        this._filters,
+        this._textList);
   }
 
   get element() {

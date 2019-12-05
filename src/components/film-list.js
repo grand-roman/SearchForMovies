@@ -16,7 +16,13 @@ class FilmList {
   }
 
   get template() {
-    return getFilmsListTemplate(this);
+    return getFilmsListTemplate(
+        this._isExtra,
+        this._isVisuallyHidden,
+        this._title,
+        this._isButton,
+        this._id
+    );
   }
 
   get element() {

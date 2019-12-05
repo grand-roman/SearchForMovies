@@ -3,8 +3,16 @@ import {KEYS, createElement} from '../utils.js';
 
 class FilmCard {
 
-  constructor({title, rating, year, duration, genres, img,
-    description, countComments}) {
+  constructor({
+    title,
+    rating,
+    year,
+    duration,
+    genres,
+    img,
+    description,
+    countComments}) {
+
     this._title = title;
     this._rating = rating;
     this._year = year;
@@ -20,7 +28,16 @@ class FilmCard {
   }
 
   get template() {
-    return getFilmCardTemplate(this);
+    return getFilmCardTemplate(
+        this._title,
+        this._rating,
+        this._year,
+        this._duration,
+        this._genres,
+        this._img,
+        this._description,
+        this._countComments
+    );
   }
 
   get element() {
@@ -69,7 +86,7 @@ class FilmCard {
   }
 
   _onOpenDetails(evt) {
-    if ((evt.keyCode !== KEYS.ENTER || evt.type !== `click`)
+    if ((evt.keyCode !== KEYS.ENTER)
       || (typeof this._onOpen !== `function`)) {
       this._onOpen();
     }

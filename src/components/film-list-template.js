@@ -1,6 +1,6 @@
 
-const getFilmsListTemplate = ({_isExtra, _isVisuallyHidden, _title,
-  _isButton, _id}) => {
+const getFilmsListTemplate = (_isExtra, _isVisuallyHidden, _title,
+  _isButton, _id) => {
   return (`
     <section id="${_id}" data-id="${_id}"
       data-isbutton="${_isButton}"

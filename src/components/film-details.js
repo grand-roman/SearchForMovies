@@ -4,9 +4,21 @@ import {KEYS, createElement} from '../utils.js';
 
 class FilmDetails {
 
-  constructor({img, age, title, rating, director, writers,
-    actors, year, duration, country, genres, description, comments},
-  controlsTypes, emojiList) {
+  constructor({
+    img,
+    age,
+    title,
+    rating,
+    director,
+    writers,
+    actors,
+    year,
+    duration,
+    country,
+    genres,
+    description,
+    comments}, controlsTypes, emojiList) {
+
     this._img = img;
     this._age = age;
     this._title = title;
@@ -29,7 +41,23 @@ class FilmDetails {
   }
 
   get template() {
-    return getFilmDetailsTemplate(this);
+    return getFilmDetailsTemplate(
+        this._img,
+        this._age,
+        this._title,
+        this._rating,
+        this._director,
+        this._writers,
+        this._actors,
+        this._year,
+        this._duration,
+        this._country,
+        this._genres,
+        this._description,
+        this._comments,
+        this._controlsTypes,
+        this._emojiList
+    );
   }
 
   get element() {
@@ -80,7 +108,7 @@ class FilmDetails {
   }
 
   _onCloseButton(evt) {
-    if ((evt.keyCode !== KEYS.ESC || evt.type !== `click`)
+    if ((evt.keyCode !== KEYS.ESC)
       || (typeof this._onClose !== `function`)) {
       this._onClose();
     }

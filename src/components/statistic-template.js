@@ -1,5 +1,5 @@
 
-const getStatisticTemplate = ({_userRating, _filters, _textList}) => {
+const getStatisticTemplate = (_userRating, _filters, _textList) => {
   return (`
     <p class="statistic__rank">
       Your rank

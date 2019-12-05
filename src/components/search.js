@@ -8,7 +8,7 @@ class Search {
   }
 
   get template() {
-    return getSearchTemplate(this);
+    return getSearchTemplate();
   }
 
   get element() {

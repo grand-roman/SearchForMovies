@@ -10,7 +10,7 @@ class ButtonShowMore {
   }
 
   get template() {
-    return getButtonShowMoreTemplate(this);
+    return getButtonShowMoreTemplate();
   }
 
   get element() {
@@ -59,8 +59,8 @@ class ButtonShowMore {
   }
 
   _onOpenButton(evt) {
-    if ((evt.keyCode !== KEYS.ENTER || evt.type !== `click`)
-      || (typeof this._onCLose !== `function`)) {
+    if ((evt.keyCode !== KEYS.ENTER)
+      || (typeof this._onClose !== `function`)) {
       this._onOpen();
     }
   }
