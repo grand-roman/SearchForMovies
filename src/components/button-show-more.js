@@ -60,7 +60,7 @@ class ButtonShowMore {
 
   _onOpenButton(evt) {
     if ((evt.keyCode !== KEYS.ENTER)
-      || (typeof this._onClose !== `function`)) {
+      || (typeof this._onOpen !== `function`)) {
       this._onOpen();
     }
   }

@@ -4,36 +4,27 @@ import {KEYS, createElement} from '../utils.js';
 
 class FilmDetails {
 
-  constructor({
-    img,
-    age,
-    title,
-    rating,
-    director,
-    writers,
-    actors,
-    year,
-    duration,
-    country,
-    genres,
-    description,
-    comments}, controlsTypes, emojiList) {
+  constructor({img, age, title, rating, director, writers,
+    actors, year, duration, country, genres, description, comments},
+  controlsTypes, emojiList) {
 
-    this._img = img;
-    this._age = age;
-    this._title = title;
-    this._rating = rating;
-    this._director = director;
-    this._writers = writers;
-    this._actors = actors;
-    this._year = year;
-    this._duration = duration;
-    this._country = country;
-    this._genres = genres;
-    this._description = description;
-    this._comments = comments;
-    this._controlsTypes = controlsTypes;
-    this._emojiList = emojiList;
+    this._filmDetalis = {
+      img,
+      age,
+      title,
+      rating,
+      director,
+      writers,
+      actors,
+      year,
+      duration,
+      country,
+      genres,
+      description,
+      comments,
+      controlsTypes,
+      emojiList
+    };
 
     this._element = null;
     this._onClose = null;
@@ -41,23 +32,7 @@ class FilmDetails {
   }
 
   get template() {
-    return getFilmDetailsTemplate(
-        this._img,
-        this._age,
-        this._title,
-        this._rating,
-        this._director,
-        this._writers,
-        this._actors,
-        this._year,
-        this._duration,
-        this._country,
-        this._genres,
-        this._description,
-        this._comments,
-        this._controlsTypes,
-        this._emojiList
-    );
+    return getFilmDetailsTemplate(this._filmDetalis);
   }
 
   get element() {
