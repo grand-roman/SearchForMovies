@@ -3,19 +3,19 @@ import {KEYS, createElement} from '../utils.js';
 
 class FilmCard {
 
-  constructor({title, rating, year, duration, genres, img,
-    description, countComments}) {
+  constructor(filmCard) {
 
-    this._filmCard = {
-      title,
-      rating,
-      year,
-      duration,
-      genres,
-      img,
-      description,
-      countComments
-    };
+    let {title, rating, year, duration, genres, img,
+      description, countComments} = filmCard;
+
+    this._title = title;
+    this._rating = rating;
+    this._year = year;
+    this._duration = duration;
+    this._genres = genres;
+    this._img = img;
+    this._description = description;
+    this._countComments = countComments;
 
 
     this._element = null;
@@ -24,7 +24,16 @@ class FilmCard {
   }
 
   get template() {
-    return getFilmCardTemplate(this._filmCard);
+    return getFilmCardTemplate(
+        this._title,
+        this._rating,
+        this._year,
+        this._duration,
+        this._genres,
+        this._img,
+        this._description,
+        this._countComments
+    );
   }
 
   get element() {

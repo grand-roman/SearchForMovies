@@ -1,6 +1,6 @@
 
-const getFilmCardTemplate = ({_title, _rating, _year, _duration, _genres, _img,
-  _description, _countComments}) => {
+const getFilmCardTemplate = (_title, _rating, _year, _duration, _genres, _img,
+    _description, _countComments) => {
   return (`
     <article class="film-card">
       <h3 class="film-card__title">
