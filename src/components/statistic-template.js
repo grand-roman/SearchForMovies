@@ -1,6 +1,6 @@
 
-const getStatisticTemplate = (userRating, filters, textList) => {
-  return `
+const getStatisticTemplate = (_userRating, _filters, _textList) => {
+  return (`
     <p class="statistic__rank">
       Your rank
       <img class="statistic__img"
@@ -8,7 +8,7 @@ const getStatisticTemplate = (userRating, filters, textList) => {
         alt="Avatar"
         width="35" height="35">
       <span class="statistic__rank-label">
-        ${userRating}
+        ${_userRating}
       </span>
     </p>
     <form action="https://echo.htmlacademy.ru/"
@@ -17,7 +17,7 @@ const getStatisticTemplate = (userRating, filters, textList) => {
       <p class="statistic__filters-description">
         Show stats:
       </p>
-      ${filters.map(({attribute, isChecked, title}) => (`<input
+      ${_filters.map(({attribute, isChecked, title}) => (`<input
         type="radio"
         class="statistic__filters-input visually-hidden"
         name="statistic-filter"
@@ -30,19 +30,19 @@ const getStatisticTemplate = (userRating, filters, textList) => {
         ${title}
       </label>`).trim()).join(``)}
     </form>
-    <ul class="statistic__text-list">${textList.map(({title, texts}) => (`
+    <ul class="statistic__text-list">${_textList.map(({title, texts}) => (`
       <li class="statistic__text-item">
         <h4 class="statistic__item-title">${title}</h4>
         <p class="statistic__item-text">
         ${texts.map(({isDescription, textTitle}) => (
-      isDescription ? `<span class="statistic__item-description">
+        isDescription ? `<span class="statistic__item-description">
           ${textTitle}</span>` : `${textTitle}`).trim()).join(``)}
         </p>
       </li>`).trim()).join(``)}
     </ul>
     <div class="statistic__chart-wrap">
       <canvas class="statistic__chart" width="1000"></canvas>
-    </div>`;
+    </div>`);
 };
 
 export {

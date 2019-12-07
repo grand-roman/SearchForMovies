@@ -1,9 +1,9 @@
 
 const getButtonShowMoreTemplate = () => {
   return (`
-  <button class="films-list__show-more">
-    Show more
-  </button>`);
+    <button class="films-list__show-more">
+      Show more
+    </button>`);
 };
 
 export {
