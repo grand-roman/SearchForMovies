@@ -4,9 +4,10 @@ import {KEYS, createElement} from '../utils.js';
 
 class FilmDetails {
 
-  constructor({img, age, title, rating, director, writers,
-    actors, year, duration, country, genres, description, comments},
-  controlsTypes, emojiList) {
+  constructor(filmDetalis, controlsTypes, emojiList) {
+
+    let {img, age, title, rating, director, writers,
+      actors, year, duration, country, genres, description, comments} = filmDetalis;
 
     this._filmDetalis = {
       img,
