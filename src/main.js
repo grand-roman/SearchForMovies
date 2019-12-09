@@ -8,9 +8,7 @@ import MainNavigation from './components/main-navigation.js';
 import Profile from './components/profile.js';
 import Search from './components/search.js';
 import Sort from './components/sort.js';
-import {
-  addElementDOM
-} from './utils.js';
+import {addElementDOM} from './utils.js';
 import {
   sortTypes,
   controlsTypes,
