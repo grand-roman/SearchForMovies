@@ -1,5 +1,6 @@
 import ButtonShowMore from './components/button-show-more.js';
 import FilmCard from './components/film-card.js';
+import NoFilmCard from "./components/no-films";
 import FilmDetails from './components/film-details.js';
 import FilmList from './components/film-list.js';
 import Footer from './components/footer.js';
@@ -71,7 +72,6 @@ const addFilmCard = (filmsListContainer, filmsListFilmsContainer,
   };
 };
 
-
 const addFilmsCards = (filmCategory, filmsListContainer,
     filmsListFilmsContainer) => {
   const filmsCardsPortion = filmCategory === filmsCategoriesId.AllMoviesUpcoming
@@ -128,9 +128,14 @@ const addFilmList = (filmCategory) => {
   }
 };
 
-addFilmList(filmsCategoriesId.AllMoviesUpcoming);
-addFilmList(filmsCategoriesId.TopRated);
-addFilmList(filmsCategoriesId.MostCommented);
+if (filmsCards.length === 0) {
+  const noFilmsListComponent = new NoFilmCard();
+  addElementDOM(films, noFilmsListComponent);
+} else {
+  addFilmList(filmsCategoriesId.AllMoviesUpcoming);
+  addFilmList(filmsCategoriesId.TopRated);
+  addFilmList(filmsCategoriesId.MostCommented);
+}
 
 const footerComponent = new Footer(countFilmCards);
 addElementDOM(footer, footerComponent);
