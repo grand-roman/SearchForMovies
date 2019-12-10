@@ -10,6 +10,12 @@ import {
   menuTypes,
   countFilmCards,
   userRating,
+  controlsTypes,
+  emojiList,
+  filmLists,
+  filmsCards,
+  filmsCategoriesId,
+  getFilmsCardsPortion
 } from './data.js';
 
 const body = document.querySelector(`body`);
@@ -36,7 +42,14 @@ const sortComponent = new Sort(sortTypes);
 addElementDOM(sort, sortComponent);
 
 const pageControllerComponent = new PageController(films, filmsDetails);
-pageControllerComponent.render();
+
+pageControllerComponent.render({
+  controlsTypes,
+  emojiList,
+  filmLists,
+  filmsCards,
+  filmsCategoriesId,
+  getFilmsCardsPortion});
 
 const footerComponent = new Footer(countFilmCards);
 addElementDOM(footer, footerComponent);

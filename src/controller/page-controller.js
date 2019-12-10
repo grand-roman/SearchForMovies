@@ -3,14 +3,6 @@ import FilmCard from '../components/film-card.js';
 import NoFilmCard from "../components/no-films";
 import FilmDetails from '../components/film-details.js';
 import FilmList from '../components/film-list.js';
-import {
-  controlsTypes,
-  emojiList,
-  filmLists,
-  filmsCards,
-  filmsCategoriesId,
-  getFilmsCardsPortion
-} from '../data.js';
 import {addElementDOM} from '../utils.js';
 
 class PageController {
@@ -19,10 +11,24 @@ class PageController {
     this._films = films;
     this._filmsDetails = filmsDetails;
     this._totalFilmPortionNumber = 1;
-    this._getFilmsCards = getFilmsCardsPortion();
   }
 
-  render() {
+  render(filmDetails) {
+    let {
+      controlsTypes,
+      emojiList,
+      filmLists,
+      filmsCards,
+      filmsCategoriesId,
+      getFilmsCardsPortion} = filmDetails;
+
+    this._controlsTypes = controlsTypes;
+    this._emojiList = emojiList;
+    this._filmLists = filmLists;
+    this._filmsCards = filmsCards;
+    this._filmsCategoriesId = filmsCategoriesId;
+    this._getFilmsCards = getFilmsCardsPortion();
+
     if (filmsCards.length === 0) {
       const noFilmsListComponent = new NoFilmCard();
       addElementDOM(this._films, noFilmsListComponent);
@@ -34,7 +40,7 @@ class PageController {
   }
 
   _addFilmList(filmCategory) {
-    const filmsListComponent = new FilmList(filmLists[filmCategory]);
+    const filmsListComponent = new FilmList(this._filmLists[filmCategory]);
     addElementDOM(this._films, filmsListComponent);
 
     const filmsListElement = filmsListComponent.element;
@@ -50,7 +56,7 @@ class PageController {
 
   _addFilmCard(filmsListContainer, filmsListFilmsContainer, filmCard) {
     const filmCardComponent = new FilmCard(filmCard);
-    const filmDetailsComponent = new FilmDetails(filmCard, controlsTypes, emojiList);
+    const filmDetailsComponent = new FilmDetails(filmCard, this._controlsTypes, this._emojiList);
 
     filmCard.categoriesId.forEach((category) => {
       if (filmsListContainer.dataset.id === category) {
@@ -71,8 +77,8 @@ class PageController {
   }
 
   _addFilmsCards(filmCategory, filmsListContainer, filmsListFilmsContainer) {
-    const filmsCardsPortion = filmCategory === filmsCategoriesId.AllMoviesUpcoming
-      ? this._getFilmsCards() : filmsCards;
+    const filmsCardsPortion = filmCategory === this._filmsCategoriesId.AllMoviesUpcoming
+      ? this._getFilmsCards() : this._filmsCards;
     filmsCardsPortion.forEach((filmCard) => {
       this._addFilmCard(filmsListContainer, filmsListFilmsContainer, filmCard);
     });
