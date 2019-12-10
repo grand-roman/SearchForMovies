@@ -22,7 +22,7 @@ class PageController {
     this._getFilmsCards = getFilmsCardsPortion();
   }
 
-  init() {
+  render() {
     if (filmsCards.length === 0) {
       const noFilmsListComponent = new NoFilmCard();
       addElementDOM(this._films, noFilmsListComponent);

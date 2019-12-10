@@ -36,7 +36,7 @@ const sortComponent = new Sort(sortTypes);
 addElementDOM(sort, sortComponent);
 
 const pageControllerComponent = new PageController(films, filmsDetails);
-pageControllerComponent.init();
+pageControllerComponent.render();
 
 const footerComponent = new Footer(countFilmCards);
 addElementDOM(footer, footerComponent);
