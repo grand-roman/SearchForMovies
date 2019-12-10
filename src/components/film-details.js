@@ -1,11 +1,13 @@
 
 import {getFilmDetailsTemplate} from './film-details-template.js';
-import {KEYS, createElement} from '../utils.js';
+import {KEYS} from '../utils.js';
+import AbstractComponent from './abstract-component.js';
 
-class FilmDetails {
+class FilmDetails extends AbstractComponent {
 
   constructor(filmDetalis, controlsTypes, emojiList) {
 
+    super();
     let {img, age, title, rating, director, writers,
       actors, year, duration, country, genres, description, comments} = filmDetalis;
 
@@ -27,7 +29,6 @@ class FilmDetails {
       emojiList
     };
 
-    this._element = null;
     this._onClose = null;
     this._onCloseButton = this._onCloseButton.bind(this);
   }
@@ -36,23 +37,8 @@ class FilmDetails {
     return getFilmDetailsTemplate(this._filmDetalis);
   }
 
-  get element() {
-    return this._element;
-  }
-
   set onClose(fn) {
     this._onClose = fn;
-  }
-
-  render() {
-    this._element = createElement(this.template);
-    this.bind();
-    return this._element;
-  }
-
-  unrender() {
-    this.unbind();
-    this._element = null;
   }
 
   bind(element = null) {
@@ -61,14 +47,6 @@ class FilmDetails {
 
   unbind(element = null) {
     this._unbindOnCloseButton(element === null ? this._element : element);
-  }
-
-  getCloneElement() {
-    const fragment = document.createDocumentFragment();
-    for (let node of this._element.childNodes) {
-      fragment.appendChild(node.cloneNode(true));
-    }
-    return fragment;
   }
 
   _bindOnCloseButton(element) {
