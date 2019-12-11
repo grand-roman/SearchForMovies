@@ -1,4 +1,4 @@
-import {createElement} from '../utils.js';
+import AbstractComponent from './abstract-component.js';
 
 const getNoFilmCardTemplate = () => {
   return (`
@@ -7,36 +7,15 @@ const getNoFilmCardTemplate = () => {
     </section>`);
 };
 
-class NoFilmCard {
+class NoFilmCard extends AbstractComponent {
 
   constructor() {
-    this._element = null;
+    super();
   }
 
   get template() {
     return getNoFilmCardTemplate();
   }
 
-  get element() {
-    return this._element;
-  }
-
-  render() {
-    this._element = createElement(this.template);
-    return this._element;
-  }
-
-  bind() {}
-
-  getCloneElement() {
-    const fragment = document.createDocumentFragment();
-    for (let node of this._element.childNodes) {
-      fragment.appendChild(node.cloneNode(true));
-    }
-    return fragment;
-  }
-  unrender() {
-    this._element = null;
-  }
 }
 export default NoFilmCard;
