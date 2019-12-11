@@ -14,7 +14,7 @@ class PageController {
   }
 
   render(filmDetails) {
-    let {
+    const {
       controlsTypes,
       emojiList,
       filmLists,
@@ -22,7 +22,7 @@ class PageController {
       filmsCategoriesId,
       getFilmsCardsPortion} = filmDetails;
 
-    let filmCardDetails = {
+    const filmCardDetails = {
       controlsTypes,
       emojiList,
       filmLists,
@@ -41,14 +41,12 @@ class PageController {
   }
 
   _addFilmList(filmCategory, filmCardDetails) {
-
-    let {
+    const {
       controlsTypes,
       emojiList,
       filmLists,
       filmsCards,
       getFilmsCardsPortion} = filmCardDetails;
-
 
     const filmsListComponent = new FilmList(filmLists[filmCategory]);
     addElementDOM(this._films, filmsListComponent);
@@ -56,7 +54,7 @@ class PageController {
     const filmsListElement = filmsListComponent.element;
     const filmsListContainer = this._getFilmsListContainer(filmsListElement);
     const filmsListFilmsContainer = this._getFilmsListFilmsContainer(filmsListContainer);
-    let addFilmDetails = {
+    const addFilmDetails = {
       filmCategory,
       filmsListContainer,
       filmsListFilmsContainer,
@@ -73,7 +71,7 @@ class PageController {
   }
 
   _addFilmCard(addOneFilmCard) {
-    let {
+    const {
       filmsListContainer,
       filmsListFilmsContainer,
       filmCard,
@@ -101,7 +99,7 @@ class PageController {
   }
 
   _addFilmsCards(addFilmDetails) {
-    let {
+    const {
       filmCategory,
       filmsListContainer,
       filmsListFilmsContainer,
@@ -113,7 +111,7 @@ class PageController {
     const filmsCardsPortion = filmCategory === filmCategory.AllMoviesUpcoming
       ? getFilmsCardsPortion() : filmsCards;
     filmsCardsPortion.forEach((filmCard) => {
-      let addOneFilmCard = {
+      const addOneFilmCard = {
         filmsListContainer,
         filmsListFilmsContainer,
         filmCard,
