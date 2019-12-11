@@ -4,52 +4,81 @@ import NoFilmCard from "../components/no-films";
 import FilmDetails from '../components/film-details.js';
 import FilmList from '../components/film-list.js';
 import {addElementDOM} from '../utils.js';
-import {
-  controlsTypes,
-  emojiList,
-  filmLists,
-  getFilmsCardsPortion
-} from '../data.js';
+
 class PageController {
 
   constructor(films, filmsDetails) {
     this._films = films;
     this._filmsDetails = filmsDetails;
     this._totalFilmPortionNumber = 1;
-    this._getFilmsCards = getFilmsCardsPortion();
   }
 
-  render(films) {
+  render(filmDetails) {
     let {
+      controlsTypes,
+      emojiList,
+      filmLists,
       filmsCards,
-      filmsCategoriesId} = films;
+      filmsCategoriesId,
+      getFilmsCardsPortion} = filmDetails;
+
+    let filmCardDetails = {
+      controlsTypes,
+      emojiList,
+      filmLists,
+      filmsCards,
+      getFilmsCardsPortion
+    };
 
     if (filmsCards.length === 0) {
       const noFilmsListComponent = new NoFilmCard();
       addElementDOM(this._films, noFilmsListComponent);
     } else {
-      this._addFilmList(filmsCategoriesId.AllMoviesUpcoming, filmsCards);
-      this._addFilmList(filmsCategoriesId.TopRated, filmsCards);
-      this._addFilmList(filmsCategoriesId.MostCommented, filmsCards);
+      this._addFilmList(filmsCategoriesId.AllMoviesUpcoming, filmCardDetails);
+      this._addFilmList(filmsCategoriesId.TopRated, filmCardDetails);
+      this._addFilmList(filmsCategoriesId.MostCommented, filmCardDetails);
     }
   }
 
-  _addFilmList(filmCategory, filmsCards) {
+  _addFilmList(filmCategory, filmCardDetails) {
+
+    let {
+      controlsTypes,
+      emojiList,
+      filmLists,
+      filmsCards,
+      getFilmsCardsPortion} = filmCardDetails;
+
+
     const filmsListComponent = new FilmList(filmLists[filmCategory]);
     addElementDOM(this._films, filmsListComponent);
 
     const filmsListElement = filmsListComponent.element;
     const filmsListContainer = this._getFilmsListContainer(filmsListElement);
     const filmsListFilmsContainer = this._getFilmsListFilmsContainer(filmsListContainer);
-
-    this._addFilmsCards(filmCategory, filmsListContainer, filmsListFilmsContainer, filmsCards);
+    let addFilmDetails = {
+      filmCategory,
+      filmsListContainer,
+      filmsListFilmsContainer,
+      filmsCards,
+      controlsTypes,
+      emojiList,
+      getFilmsCardsPortion
+    };
+    this._addFilmsCards(addFilmDetails);
 
     if (filmsListElement.firstElementChild.dataset.isbutton) {
-      this._createButtonShowMore(filmsListContainer);
+      this._createButtonShowMore(filmsListContainer, getFilmsCardsPortion);
     }
   }
 
-  _addFilmCard(filmsListContainer, filmsListFilmsContainer, filmCard) {
+  _addFilmCard(addOneFilmCard) {
+    let {
+      filmsListContainer,
+      filmsListFilmsContainer,
+      filmCard,
+      controlsTypes,
+      emojiList} = addOneFilmCard;
     const filmCardComponent = new FilmCard(filmCard);
     const filmDetailsComponent = new FilmDetails(filmCard, controlsTypes, emojiList);
 
@@ -71,16 +100,32 @@ class PageController {
     };
   }
 
-  _addFilmsCards(filmCategory, filmsListContainer, filmsListFilmsContainer, filmsCards) {
+  _addFilmsCards(addFilmDetails) {
+    let {
+      filmCategory,
+      filmsListContainer,
+      filmsListFilmsContainer,
+      filmsCards,
+      controlsTypes,
+      emojiList,
+      getFilmsCardsPortion} = addFilmDetails;
+
     const filmsCardsPortion = filmCategory === filmCategory.AllMoviesUpcoming
-      ? this._getFilmsCards() : filmsCards;
+      ? getFilmsCardsPortion() : filmsCards;
     filmsCardsPortion.forEach((filmCard) => {
-      this._addFilmCard(filmsListContainer, filmsListFilmsContainer, filmCard);
+      let addOneFilmCard = {
+        filmsListContainer,
+        filmsListFilmsContainer,
+        filmCard,
+        controlsTypes,
+        emojiList
+      };
+      this._addFilmCard(addOneFilmCard);
     });
   }
 
-  _addMoreCards() {
-    const filmsCardsPortion = this._getFilmsCards();
+  _addMoreCards(getFilmsCardsPortion) {
+    const filmsCardsPortion = getFilmsCardsPortion();
     this._totalFilmPortionNumber += 1;
     filmsCardsPortion.forEach((filmCardPortion) => {
       const filmsListContainer = document.getElementById(filmCardPortion.categoriesId[0]);
@@ -90,12 +135,12 @@ class PageController {
     });
   }
 
-  _createButtonShowMore(filmsListContainer) {
+  _createButtonShowMore(filmsListContainer, getFilmsCardsPortion) {
     const buttonShowMoreComponent = new ButtonShowMore();
     addElementDOM(filmsListContainer, buttonShowMoreComponent);
 
     buttonShowMoreComponent.onOpen = () => {
-      this._addMoreCards();
+      this._addMoreCards(getFilmsCardsPortion);
       if (this._totalFilmPortionNumber === 3) {
         document.querySelector(`.films-list__show-more`).remove();
         buttonShowMoreComponent.unrender();
