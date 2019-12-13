@@ -1,7 +1,6 @@
 import {createElement} from '../utils.js';
 
 class AbstractComponent {
-
   constructor() {
     if (new.target === AbstractComponent) {
       throw new Error(`Can't instantiate AbstractComponent, only concrete one.`);
@@ -10,35 +9,19 @@ class AbstractComponent {
     this._element = null;
   }
 
-  get element() {
-    return this._element;
+  getTemplate() {
+    throw new Error(`Abstract method not implemented: getTemplate`);
   }
 
-  get template() {
-    throw new Error(`You have to define template.`);
-  }
-
-  bind() {}
-
-  unbind() {}
-
-  render() {
-    this._element = createElement(this.template);
-    this.bind();
-    return this._element;
-  }
-
-  unrender() {
-    this.unbind();
-    this._element = null;
-  }
-
-  getCloneElement() {
-    const fragment = document.createDocumentFragment();
-    for (let node of this._element.childNodes) {
-      fragment.appendChild(node.cloneNode(true));
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
     }
-    return fragment;
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
   }
 }
 
