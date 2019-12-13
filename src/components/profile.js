@@ -1,17 +1,15 @@
-import {getProfileTemplate} from './profile-template.js';
-import AbstractComponent from './abstract-component.js';
+import AbstractComponent from "./abstract-component";
 
 class Profile extends AbstractComponent {
-
-  constructor(userRating) {
+  constructor(Title) {
     super();
-    this._userRating = userRating;
+    this._titleUser = Title;
   }
-
-  get template() {
-    return getProfileTemplate(this._userRating);
+  getTemplate() {
+    return `<section class="header__profile profile">
+        <p class="profile__rating">${this._titleUser}</p>
+        <img class="profile__avatar" src="images/bitmap@2x.png" alt="Avatar" width="35" height="35">
+      </section>`;
   }
-
 }
-
 export default Profile;
