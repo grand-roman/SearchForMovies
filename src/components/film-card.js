@@ -1,56 +1,38 @@
-import {getFilmCardTemplate} from './film-card-template.js';
-import {KEYS} from '../utils.js';
-import AbstractComponent from './abstract-component.js';
+import AbstractComponent from "./abstract-component";
 
 class FilmCard extends AbstractComponent {
-
-  constructor(filmCard) {
-
+  constructor(card) {
     super();
-    let {title, rating, year, duration, genres, img,
-      description, countComments} = filmCard;
-
-    this._title = title;
-    this._rating = rating;
-    this._year = year;
-    this._duration = duration;
-    this._genres = genres;
-    this._img = img;
-    this._description = description;
-    this._countComments = countComments;
-
-    this._onOpen = null;
-    this._onOpenDetails = this._onOpenDetails.bind(this);
+    this._title = card.filmTitle;
+    this._rating = card.ratings;
+    this._year = card.year;
+    this._runtime = card.runtime();
+    this._genre = card.genre;
+    this._poster = card.posters;
+    this._shortDescription = card.desciption();
+    this._countComments = card.comments;
+    this._isWatchlist = card.isWatchlist;
+    this._isViewed = card.isViewed;
+    this._isFavorite = card.isFavorite;
   }
-
-  get template() {
-    return getFilmCardTemplate(
-        this._title,
-        this._rating,
-        this._year,
-        this._duration,
-        this._genres,
-        this._img,
-        this._description,
-        this._countComments
-    );
-  }
-
-  _bindOnOpenDetails(element) {
-    element.firstElementChild.addEventListener(`click`, this._onOpenDetails);
-    element.firstElementChild.addEventListener(`keydown`, this._onOpenDetails);
-  }
-
-  _unbindOnOpenDetails(element) {
-    element.firstElementChild.removeEventListener(`click`, this._onOpenDetails);
-    element.firstElementChild.removeEventListener(`keydown`, this._onOpenDetails);
-  }
-
-  _onOpenDetails(evt) {
-    if ((evt.keyCode !== KEYS.ENTER)
-      || (typeof this._onOpen !== `function`)) {
-      this._onOpen();
-    }
+  getTemplate() {
+    return `<article class="film-card">
+    <h3 class="film-card__title">${this._title}</h3>
+    <p class="film-card__rating">${this._rating}</p>
+    <p class="film-card__info">
+      <span class="film-card__year">${this._year}</span>
+      <span class="film-card__duration">${this._runtime}</span>
+      <span class="film-card__genre">${this._genre}</span>
+    </p>
+    <img src="./images/posters/${this._poster}" alt="" class="film-card__poster">
+    <p class="film-card__description">${this._shortDescription}</p>
+    <a class="film-card__comments">${this._countComments} comments</a>
+    <form class="film-card__controls">
+      <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist ${this._isWatchlist && `film-card__controls-item--active`}">Add to watchlist</button>
+      <button class="film-card__controls-item button film-card__controls-item--mark-as-watched ${this._isViewed && `film-card__controls-item--active`}">Mark as watched</button>
+      <button class="film-card__controls-item button film-card__controls-item--favorite ${this._isFavorite && `film-card__controls-item--active`}">Mark as favorite</button>
+    </form>
+  </article>`;
   }
 }
 
