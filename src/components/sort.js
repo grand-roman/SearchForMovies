@@ -1,17 +1,13 @@
-import {getSortTemplate} from './sort-template.js';
-import AbstractComponent from './abstract-component.js';
+import AbstractComponent from "./abstract-component";
 
 class Sort extends AbstractComponent {
 
-  constructor(sortType) {
-    super();
-    this._sortType = sortType;
+  getTemplate() {
+    return `<ul class="sort">
+        <li><a href="#" data-sort="default" class="sort__button sort__button--active">Sort by default</a></li>
+        <li><a href="#" data-sort="date" class="sort__button">Sort by date</a></li>
+        <li><a href="#" data-sort="rating" class="sort__button">Sort by rating</a></li>
+      </ul>`;
   }
-
-  get template() {
-    return getSortTemplate(this._sortType);
-  }
-
 }
-
 export default Sort;

@@ -1,38 +1,46 @@
-const KEYS = {
-  'ESC': 27,
-  'ENTER': 13
+export const generatorRandom = {
+  generateRandomNumber(min, max) {
+    return (min + Math.random() * (max - min)).toFixed(1);
+  },
+  splitStr(str) {
+    return str.split(`.`);
+  },
+  generateRandomCount(count) {
+    return Math.floor(Math.random() * count);
+  },
+};
+export const Position = {
+  AFTERBEGIN: `afterbegin`,
+  BEFOREEND: `beforeend`,
+  AFTER: `after`
 };
 
-const addElementDOM = (container, component) => {
-  component.render();
-  const cloneElement = component.getCloneElement();
-  component.bind(cloneElement);
-  container.append(cloneElement);
-};
-
-const createElement = (template) => {
+export const createElement = (template) => {
   const newElement = document.createElement(`div`);
   newElement.innerHTML = template;
-  const fragment = document.createDocumentFragment();
-  const childrenCount = newElement.childNodes.length;
-  for (let i = 0; i < childrenCount; i++) {
-    fragment.appendChild(newElement.childNodes[0]);
+  return newElement.firstChild;
+};
+
+export const render = (container, element, place) => {
+  switch (place) {
+    case Position.AFTERBEGIN:
+      container.prepend(element);
+      break;
+    case Position.BEFOREEND:
+      container.append(element);
+      break;
+    case Position.AFTER:
+      container.after(element);
+      break;
   }
-  return fragment;
 };
 
-const getRandomValueMinMax = (min, max, roundingNumber = 0) => {
-  return +(Math.random() * (max - min)).toFixed(roundingNumber) + min;
+export const unrender = (element) => {
+  if (element) {
+    element.remove();
+  }
+};
+export const isEscPressed = (key) => {
+  return key === `Escape` || key === `Esc`;
 };
 
-const compareRandom = () => {
-  return Math.random() - 0.5;
-};
-
-export {
-  KEYS,
-  createElement,
-  getRandomValueMinMax,
-  compareRandom,
-  addElementDOM
-};
