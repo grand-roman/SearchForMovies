@@ -13,9 +13,10 @@ import {
 
 const headerContainer = document.querySelector(`.header`);
 const mainContainer = document.querySelector(`.main`);
-const page = new PageController(mainContainer, filmData);
 
 render(headerContainer, new Search().getElement(), Position.BEFOREEND);
 render(headerContainer, new Profile(generateRank()).getElement(), Position.BEFOREEND);
 render(mainContainer, new MainNavigation(historyCount, watchlistCount, favorites).getElement(), Position.BEFOREEND);
+
+const page = new PageController(mainContainer, headerContainer, filmData);
 page.render();

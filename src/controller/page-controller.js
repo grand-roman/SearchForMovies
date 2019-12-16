@@ -8,13 +8,11 @@ import TopRated from "../components/top-rated";
 import {render, unrender, Position, isEscPressed} from '../utils.js';
 import {generateFilmData as filmData, totalfilm} from "../data.js";
 
-const mainContainer = document.querySelector(`.main`);
-const bodyContainer = document.querySelector(`body`);
-const headerContainer = document.querySelector(`.header`);
 
 class PageController {
-  constructor(container, films) {
-    this._container = container;
+  constructor(mainContainer, headerContainer, films) {
+    this._mainContainer = mainContainer;
+    this._headerContainer = headerContainer;
     this._films = films;
   }
   static renderCard(countFilm, countFilmStart, filmCardContainer, arrFilm) {
@@ -41,8 +39,9 @@ class PageController {
     });
   }
   static openPopup(popup) {
-    render(bodyContainer, popup.getElement(), Position.BEFOREEND);
-    bodyContainer.classList.add(`hide-overflow`);
+    this._bodyContainer = document.querySelector(`body`);
+    render(this._bodyContainer, popup.getElement(), Position.BEFOREEND);
+    this._bodyContainer.classList.add(`hide-overflow`);
     const onCloseBtnClick = (evtClose) => {
       evtClose.preventDefault();
       if (evtClose.target.classList.contains(`film-details__close-btn`)) {
@@ -69,7 +68,7 @@ class PageController {
   static closePopup(popup) {
     unrender(popup.getElement());
     popup.removeElement();
-    bodyContainer.classList.remove(`hide-overflow`);
+    this._bodyContainer.classList.remove(`hide-overflow`);
   }
 
   onCardTogglerClick(evt) {
@@ -118,8 +117,8 @@ class PageController {
     }
   }
   render() {
-    render(mainContainer, new Sort().getElement(), Position.BEFOREEND);
-    render(mainContainer, new FilmList().getElement(), Position.BEFOREEND);
+    render(this._mainContainer, new Sort().getElement(), Position.BEFOREEND);
+    render(this._mainContainer, new FilmList().getElement(), Position.BEFOREEND);
     const filmContainer = document.querySelector(`.films`);
     const filmList = filmContainer.querySelector(`.films-list`);
     const filmCardContainer = filmList.querySelector(`.films-list__container`);
@@ -152,8 +151,8 @@ class PageController {
     const footerStatistics = document.querySelector(`.footer__statistics`);
     footerStatistics.textContent = `${totalfilm} movies inside`;
     if (Object.keys(filmData()).length === 0) {
-      unrender(mainContainer);
-      render(headerContainer, new NoFilmCard().getElement(), Position.AFTER);
+      unrender(this._mainContainer);
+      render(this._headerContainer, new NoFilmCard().getElement(), Position.AFTER);
     }
   }
 }

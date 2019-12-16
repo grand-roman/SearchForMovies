@@ -1,9 +1,7 @@
 import AbstractComponent from "./abstract-component";
 
 class FilmList extends AbstractComponent {
-  constructor() {
-    super();
-  }
+
   getTemplate() {
     return `<section class="films">
         <section class="films-list">

@@ -1,9 +1,9 @@
 import AbstractComponent from "./abstract-component";
 
 class Profile extends AbstractComponent {
-  constructor(Title) {
+  constructor(title) {
     super();
-    this._titleUser = Title;
+    this._titleUser = title;
   }
   getTemplate() {
     return `<section class="header__profile profile">

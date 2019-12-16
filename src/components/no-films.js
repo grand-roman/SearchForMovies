@@ -1,9 +1,7 @@
 import AbstractComponent from "./abstract-component";
 
 class NoFilmCard extends AbstractComponent {
-  constructor() {
-    super();
-  }
+
   getTemplate() {
     return `<main class="main">
   <div class="result">

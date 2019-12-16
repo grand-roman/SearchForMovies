@@ -5,7 +5,7 @@ class MainNavigation extends AbstractComponent {
     super();
     this._historyCount = historyCount;
     this.watchlistCount = watchlistCount;
-    this.favorites = favorites;
+    this._favorites = favorites;
   }
   getTemplate() {
     return `<nav class="main-navigation">
@@ -14,7 +14,7 @@ class MainNavigation extends AbstractComponent {
 }</span></a>
         <a href="#history" class="main-navigation__item">History <span class="main-navigation__item-count">${this._historyCount
 }</span></a>
-        <a href="#favorites" class="main-navigation__item">Favorites <span class="main-navigation__item-count">${this.favorites
+        <a href="#favorites" class="main-navigation__item">Favorites <span class="main-navigation__item-count">${this._favorites
 }</span></a>
         <a href="#stats" class="main-navigation__item main-navigation__item--additional">Stats</a>
       </nav>`;
