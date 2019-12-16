@@ -10,10 +10,9 @@ import {generateFilmData as filmData, totalfilm} from "../data.js";
 
 
 class PageController {
-  constructor(mainContainer, headerContainer, films) {
-    this._mainContainer = mainContainer;
-    this._headerContainer = headerContainer;
-    this._films = films;
+  constructor(container) {
+    this._mainContainer = container.querySelector(`.main`);
+    this._headerContainer = container.querySelector(`.header`);
   }
   static renderCard(countFilm, countFilmStart, filmCardContainer, arrFilm) {
     const arrFilmSlice = arrFilm.slice(countFilmStart, countFilm);
