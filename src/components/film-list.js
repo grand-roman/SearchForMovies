@@ -11,6 +11,9 @@ class FilmList extends AbstractComponent {
         </section>
       </section>`;
   }
+  getChildren() {
+    return this._element.children;
+  }
 }
 
 export default FilmList;
