@@ -20,34 +20,34 @@ class MovieController {
     const onCloseBtnClick = (evtClose) => {
       evtClose.preventDefault();
       if (evtClose.target.classList.contains(`film-details__close-btn`)) {
-        MovieController.closePopup(popup);
-        document.removeEventListener(`keydown`, onEscKeydown);
+        MovieController.closePopup(popup, this._bodyContainer);
+        this._bodyContainer.removeEventListener(`keydown`, onEscKeydown);
       }
     };
     popup.getElement().addEventListener(`click`, onCloseBtnClick);
     const onEscKeydown = (evtEsc) => {
       if (isEscPressed(evtEsc.key)) {
-        MovieController.closePopup(popup);
-        document.removeEventListener(`keydown`, onEscKeydown);
+        MovieController.closePopup(popup, this._bodyContainer);
+        this._bodyContainer.removeEventListener(`keydown`, onEscKeydown);
       }
     };
-    document.addEventListener(`keydown`, onEscKeydown);
+    this._bodyContainer.addEventListener(`keydown`, onEscKeydown);
     const commentAdd = popup.getElement().querySelector(`.film-details__comment-input`);
     commentAdd.addEventListener(`focus`, function () {
-      document.removeEventListener(`keydown`, onEscKeydown);
+      commentAdd.removeEventListener(`keydown`, onEscKeydown);
     });
     commentAdd.addEventListener(`blur`, function () {
-      document.addEventListener(`keydown`, onEscKeydown);
+      commentAdd.addEventListener(`keydown`, onEscKeydown);
     });
   }
-  static closePopup(popup) {
+  static closePopup(popup, bodyContainer) {
     unrender(popup.getElement());
     popup.removeElement();
-    this._bodyContainer.classList.remove(`hide-overflow`);
+    bodyContainer.classList.remove(`hide-overflow`);
   }
 
   setDefaultView(popup) {
-    if (document.body.contains(popup.getElement())) {
+    if (this._bodyContainer.contains(popup.getElement())) {
       unrender(popup.getElement());
       popup.removeElement();
     }
