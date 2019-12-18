@@ -43,4 +43,6 @@ export const unrender = (element) => {
 export const isEscPressed = (key) => {
   return key === `Escape` || key === `Esc`;
 };
-
+export const isEnterPressed = (key) => {
+  return key === `Enter`;
+};
