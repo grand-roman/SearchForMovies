@@ -1,3 +1,9 @@
+export const KeyCode = {
+  ENTER: 13,
+  CONTROL: 17,
+  ENTERSTRING: `Enter`,
+  CONTROLSTRING: `Control`,
+};
 export const generatorRandom = {
   generateRandomNumber(min, max) {
     return (min + Math.random() * (max - min)).toFixed(1);
@@ -14,7 +20,8 @@ export const Position = {
   BEFOREEND: `beforeend`,
   AFTER: `after`
 };
-
+export const AUTHORIZATION = `Basic eo0w590ik29889a`;
+export const END_POINT = `https://htmlacademy-es-10.appspot.com/cinemaddict/`;
 export const createElement = (template) => {
   const newElement = document.createElement(`div`);
   newElement.innerHTML = template;
@@ -42,7 +49,4 @@ export const unrender = (element) => {
 };
 export const isEscPressed = (key) => {
   return key === `Escape` || key === `Esc`;
-};
-export const isEnterPressed = (key) => {
-  return key === `Enter`;
 };
