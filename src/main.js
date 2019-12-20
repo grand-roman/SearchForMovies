@@ -25,10 +25,10 @@ const startApp = (films) => {
   loading.removeElement();
   const page = new PageController(bodyContainer, films, count, stat, onDataChangeMain);
   const statsController = new StatsController(mainContainer, films, stat);
-  statsController.init();
+  statsController.render();
   page.render();
   const searchControl = new SearchControlLer(headerContainer, films, search, page, mainContainer);
-  searchControl.init();
+  searchControl.render();
   render(headerContainer, new Profile(titleUser).getElement(), Position.BEFOREEND);
 };
 const onDataChangeMain = (actionType, update) => {

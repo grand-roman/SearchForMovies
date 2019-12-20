@@ -15,7 +15,7 @@ export default class CommentsController {
     this._api = new API({endPoint: END_POINT, authorization: AUTHORIZATION});
   }
 
-  init() {
+  render() {
     unrender(this._commentsList.getElement());
     this._commentsList.removeElement();
 

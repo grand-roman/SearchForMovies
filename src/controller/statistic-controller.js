@@ -206,7 +206,7 @@ export default class StatsController {
 
     return topGenre;
   }
-  init() {
+  render() {
     this._getAllListGenres(this._data);
     render(this._container, this._stats.getElement(), Position.AFTER);
     this._renderCharts(this._data);

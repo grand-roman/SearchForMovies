@@ -10,7 +10,7 @@ class SearchControlLer {
     this._page = page;
     this._mainContainer = mainContainer;
   }
-  init() {
+  render() {
     const noSearch = new NoSearch();
     const searchResult = new SearchResult();
     this._search.startSearch = () => {

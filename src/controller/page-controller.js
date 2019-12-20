@@ -11,7 +11,6 @@ import API from "../api";
 class PageController {
   constructor(container, film, count, stat, onDataChangeMain) {
     this._container = container;
-    this._containerFirst = container.innerHTML;
     this._mainContainer = container.querySelector(`.main`);
     this._film = film;
     this._stat = stat;
@@ -80,7 +79,7 @@ class PageController {
   }
   renderCard(containerCard, films) {
     const movieController = new MovieController(this._container, films, containerCard, this._count, this._onDataChange, this._onChangeView);
-    movieController.init();
+    movieController.render();
   }
   unrenderCard() {
     const filmCard = this._container.querySelectorAll(`.films-list .films-list__container .film-card`);
