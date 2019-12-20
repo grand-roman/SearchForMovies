@@ -59,7 +59,7 @@ class PageController {
     }
   }
 
-  addExtraFilm(topRated) {
+  addExtraFilm(topRated, mostComment) {
     const topRatingFilm = () => {
       let filsmRating = [...this._film].sort((filmSecond, filmFirst) => (parseFloat(filmFirst.totalRating) - parseFloat(filmSecond.totalRating)));
       filsmRating = filsmRating.slice(0, 2);
@@ -68,7 +68,7 @@ class PageController {
     const topCommentFilm = () => {
       let filmsComment = [...this._film].sort((filmSecond, filmFirst) => (parseFloat(filmFirst.comments.length) - parseFloat(filmSecond.comments.length)));
       filmsComment = filmsComment.slice(0, 2);
-      this.renderCard(topRated.takeContainer()[1], filmsComment);
+      this.renderCard(mostComment.takeContainer()[1], filmsComment);
     };
     topCommentFilm();
     topRatingFilm();
@@ -87,7 +87,8 @@ class PageController {
     filmCard.forEach((item) => unrender(item));
   }
   unrenderAll() {
-    this._container.innerHTML = this._containerFirst;
+    const mainContainer = this._container.querySelector(`.main`);
+    mainContainer.innerHTML = ``;
   }
   render() {
     let totalFilm = this._film;
@@ -157,7 +158,6 @@ class PageController {
       });
       this.renderCard(filmCardContainer, filmsFavor);
     };
-
     render(this._mainContainer, menu.getElement(), Position.BEFOREEND);
     const filmContainer = new FilmList();
     render(this._mainContainer, filmContainer.getElement(), Position.BEFOREEND);
@@ -202,12 +202,13 @@ class PageController {
 
     render(filmList, sortFilm.getElement(), Position.AFTERBEGIN);
     const topRated = new TopRated();
-    for (let j = 0; j < 2; j++) {
-      render(filmContainer.getElement(), new TopRated().getElement(), Position.BEFOREEND);
-      topRated.removetitle();
-    }
+    render(filmContainer.getElement(), topRated.getElement(), Position.BEFOREEND);
+    const mostComment = new TopRated();
+    render(filmContainer.getElement(), mostComment.getElement(), Position.BEFOREEND);
+    mostComment.removetitle();
+
     this.renderCard(filmCardContainer, this._film);
-    this.addExtraFilm(topRated);
+    this.addExtraFilm(topRated, mostComment);
     this.addCountFilmFooter();
   }
 
