@@ -15,7 +15,7 @@ class SearchControlLer {
     const searchResult = new SearchResult();
     this._search.startSearch = () => {
       let filmSearch = [];
-      if (this._search.researchValue().length > 3) {
+      if (this._search.researchValue().length > 2) {
         unrender(searchResult.getElement());
         this._mainContainer.querySelector(`.films-list__container`).textContent = ``;
 
@@ -39,10 +39,9 @@ class SearchControlLer {
           }
         }
         if (filmSearch.length === 0) {
-
-          this._mainContainer.querySelector(`.films-list__container`).innerHTML = `<div class="no-result">
-            There is no movies for your request.
-            </div>`;
+          //this._mainContainer.querySelector(`.films-list__container`).innerHTML = `<div class="no-result">
+           // There is no movies for your request.
+           // </div>`;
         } else {
           const filmListContainer = this._mainContainer.querySelector(`.films-list__container`);
           this._page.unrenderCard();
@@ -56,10 +55,11 @@ class SearchControlLer {
     this._search.searchReset = () => {
       if (this._mainContainer.querySelector(`.no-search-result`)) {
         unrender(noSearch.getElement());
-      } else {
-        this._page.unrenderAll();
       }
-      this._page.render();
+      //else {
+      //  this._page.unrenderAll();
+      //}
+      //this._page.render();
     };
     render(this._container, this._search.getElement(), Position.BEFOREEND);
   }
