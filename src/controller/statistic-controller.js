@@ -169,8 +169,8 @@ export default class StatsController {
   _getAllListGenres(data) {
     const genres = new Set([]);
     data.forEach((film) => {
-      if (film.genre.length > 0) {
-        genres.add(...film.genre);
+      if (film.genres.length > 0) {
+        genres.add(...film.genres);
       }
     });
     return genres;
@@ -184,7 +184,7 @@ export default class StatsController {
     });
 
     films.forEach((film) => {
-      film.genre.forEach((item) => {
+      film.genres.forEach((item) => {
         genresCounter[item] += 1;
       });
     });

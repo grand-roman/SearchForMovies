@@ -19,8 +19,8 @@ class TopRated extends AbstractComponent {
   }
 
   removetitle() {
-    const filmExtraTitle = document.querySelectorAll(`.films-list--extra .films-list__title`);
-    filmExtraTitle.forEach(function (item, i) {
+    const filmExtraTitles = document.querySelectorAll(`.films-list--extra .films-list__title`);
+    filmExtraTitles.forEach(function (item, i) {
       if (i === 0) {
         item.textContent = `Top rated`;
       } else {

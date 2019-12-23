@@ -6,7 +6,7 @@ export default class ModelFilm {
     this.title = data[`film_info`][`title`] || ``;
     this.year = data[`film_info`][`release`][`date`] || null;
     this.duration = data[`film_info`][`runtime`] || null;
-    this.genre = data[`film_info`][`genre`] || [];
+    this.genres = data[`film_info`][`genre`] || [];
     this.posterLink = `./${data[`film_info`][`poster`]}` || ``;
     this.description = data[`film_info`][`description`] || ``;
     this.controls = {
@@ -48,7 +48,7 @@ export default class ModelFilm {
           'date': new Date(this.year),
           'release_country': this.releaseCountry,
         },
-        'genre': [...this.genre.values()],
+        'genre': [...this.genres.values()],
         'age_rating': this.ageRating,
         'actors': this.actors,
         'director': this.director,

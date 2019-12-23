@@ -11,7 +11,7 @@ class FilmDetails extends AbstractComponent {
     this._year = card.year;
     this._userRatio = card.personalRating;
     this._runtime = card.duration;
-    this._genre = card.genre;
+    this._genres = card.genres;
     this._poster = card.posterLink;
     this._description = card.description;
     this._countComments = card.comments;
@@ -76,7 +76,7 @@ class FilmDetails extends AbstractComponent {
                 <tr class="film-details__row">
                   <td class="film-details__term">Genres</td>
                   <td class="film-details__cell">
-                    <span class="film-details__genre">${this._genre}</span></td>
+                    <span class="film-details__genre">${this._genres}</span></td>
                 </tr>
               </tbody></table>
 

@@ -55,8 +55,8 @@ export default class CommentsController {
         }
       });
     }
-    const sizePressedKey = 2;
-    if (pressedKey.size === sizePressedKey) {
+    const SIZE_PRESSED_KEY = 2;
+    if (pressedKey.size === SIZE_PRESSED_KEY) {
       pressedKey.clear();
 
       commentTextarea.disabled = true;

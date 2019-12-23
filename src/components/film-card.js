@@ -9,7 +9,7 @@ class FilmCard extends AbstractComponent {
     this._rating = card.totalRating;
     this._year = card.year;
     this._runtime = card.duration;
-    this._genre = card.genre;
+    this._genre = card.genres;
     this._poster = card.posterLink;
     this._shortDescription = card.description;
     this._countComments = card.comments;
@@ -49,10 +49,10 @@ class FilmCard extends AbstractComponent {
     return this._genre.join(`, `);
   }
   addDescription() {
-    const shortDescription = 139;
+    const SHORT_DESCRIPTION = 139;
     let strDesk = this._shortDescription;
-    if (this._shortDescription.length > shortDescription) {
-      strDesk = this._shortDescription.substr(0, shortDescription);
+    if (this._shortDescription.length > SHORT_DESCRIPTION) {
+      strDesk = this._shortDescription.substr(0, SHORT_DESCRIPTION);
       strDesk += `...`;
     }
     return strDesk;
