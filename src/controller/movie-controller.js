@@ -1,18 +1,17 @@
 import FilmDetails from "../components/film-details";
-import {AUTHORIZATION, END_POINT, isEscPressed, Position, render, unrender} from "../utils";
+import {isEscPressed, Position, render, unrender} from "../utils";
 import FilmCard from "../components/film-card";
 import CommentsController from "./comment-controller";
-import API from "../api";
 
 class MovieController {
-  constructor(bodyContainer, films, containerCard, count, onDataChange, onChangeView) {
+  constructor(bodyContainer, films, containerCard, count, onDataChange, onChangeView, api) {
     this._bodyContainer = bodyContainer;
     this._film = films;
     this._count = count;
     this._containerCard = containerCard;
     this._onDataChange = onDataChange;
     this._onChangeView = onChangeView;
-    this._api = new API({endPoint: END_POINT, authorization: AUTHORIZATION});
+    this._api = api;
   }
 
   openPopup(popup) {

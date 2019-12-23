@@ -3,13 +3,12 @@ import FilmList from "../components/film-list";
 import Sort from "../components/sort";
 import MainNavigation from "../components/main-navigation";
 import TopRated from "../components/top-rated";
-import {render, unrender, Position, AUTHORIZATION, END_POINT, generatorRandom} from '../utils';
+import {render, unrender, Position, generatorRandom} from '../utils';
 import MovieController from './movie-controller';
-import API from "../api";
 
 
 class PageController {
-  constructor(container, film, count, stat, onDataChangeMain) {
+  constructor(container, film, count, stat, onDataChangeMain, api) {
     this._container = container;
     this._mainContainer = container.querySelector(`.main`);
     this._film = film;
@@ -18,7 +17,7 @@ class PageController {
     this._onDataChange = this._onDataChange.bind(this);
     this._count = count;
     this._subscriptions = [];
-    this._api = new API({endPoint: END_POINT, authorization: AUTHORIZATION});
+    this._api = api;
     this._onDataChangeMain = onDataChangeMain;
   }
   _onChangeView() {
@@ -78,7 +77,7 @@ class PageController {
     footerStatistics.textContent = `${totalFilm} movies inside`;
   }
   renderCard(containerCard, films) {
-    const movieController = new MovieController(this._container, films, containerCard, this._count, this._onDataChange, this._onChangeView);
+    const movieController = new MovieController(this._container, films, containerCard, this._count, this._onDataChange, this._onChangeView, this._api);
     movieController.render();
   }
   unrenderCard() {

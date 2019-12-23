@@ -23,7 +23,7 @@ const startApp = (films) => {
   const stat = new Statistic(titleUser, films);
   unrender(loading.getElement());
   loading.removeElement();
-  const page = new PageController(bodyContainer, films, count, stat, onDataChangeMain);
+  const page = new PageController(bodyContainer, films, count, stat, onDataChangeMain, api);
   const statsController = new StatsController(mainContainer, films, stat);
   statsController.render();
   page.render();
