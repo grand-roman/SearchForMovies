@@ -49,9 +49,10 @@ class FilmCard extends AbstractComponent {
     return this._genre.join(`, `);
   }
   addDescription() {
+    const shortDescription = 139;
     let strDesk = this._shortDescription;
-    if (this._shortDescription.length > 139) {
-      strDesk = this._shortDescription.substr(0, 139);
+    if (this._shortDescription.length > shortDescription) {
+      strDesk = this._shortDescription.substr(0, shortDescription);
       strDesk += `...`;
     }
     return strDesk;

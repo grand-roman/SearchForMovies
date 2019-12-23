@@ -15,7 +15,8 @@ class SearchControlLer {
     const searchResult = new SearchResult();
     this._search.startSearch = () => {
       let filmSearch = [];
-      if (this._search.researchValue().length > 2) {
+      let searchLength = 3;
+      if (this._search.researchValue().length > searchLength) {
         unrender(searchResult.getElement());
         this._mainContainer.querySelector(`.films-list__container`).textContent = ``;
 
