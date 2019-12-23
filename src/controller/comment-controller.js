@@ -55,7 +55,8 @@ export default class CommentsController {
         }
       });
     }
-    if (pressedKey.size === 2) {
+    const sizePressedKey = 2;
+    if (pressedKey.size === sizePressedKey) {
       pressedKey.clear();
 
       commentTextarea.disabled = true;
