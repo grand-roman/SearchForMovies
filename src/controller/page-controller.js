@@ -3,7 +3,7 @@ import FilmList from "../components/film-list";
 import Sort from "../components/sort";
 import MainNavigation from "../components/main-navigation";
 import TopRated from "../components/top-rated";
-import {render, unrender, Position, generatorRandom} from '../utils';
+import {render, unrender, Position, generatorRandom, RandomValue, InstExtraFilm} from '../utils';
 import MovieController from './movie-controller';
 
 
@@ -54,27 +54,21 @@ class PageController {
       const indexInCommentsList = commentsListData.findIndex((comment) => comment.id === commentId);
       this._film[indexInCards].comments.splice(indexInCommentsList, 1);
     } else {
-      const RANDOM_MIN = 1000;
-      const RANDOM_MAX = 9999;
-      newData.id = generatorRandom.generateRandomNumber(RANDOM_MIN, RANDOM_MAX);
+      newData.id = generatorRandom.generateRandomNumber(RandomValue.RANDOM_MIN, RandomValue.RANDOM_MAX);
       this._film[this._film.findIndex((it) => it === oldData)].comments.push(newData.id);
     }
   }
 
   addExtraFilm(topRated, mostComment) {
-    const LEFT_SIDE = 0;
-    const RIGHT_SIDE = 1;
-    const BEGIN_PART = 0;
-    const END_PART = 2;
     const topRatingFilm = () => {
       let filsmRating = [...this._film].sort((filmSecond, filmFirst) => (parseFloat(filmFirst.totalRating) - parseFloat(filmSecond.totalRating)));
-      filsmRating = filsmRating.slice(BEGIN_PART, END_PART);
-      this.renderCard(topRated.takeContainer()[LEFT_SIDE], filsmRating);
+      filsmRating = filsmRating.slice(InstExtraFilm.BEGIN_PART, InstExtraFilm.END_PART);
+      this.renderCard(topRated.takeContainer()[InstExtraFilm.LEFT_SIDE], filsmRating);
     };
     const topCommentFilm = () => {
       let filmsComment = [...this._film].sort((filmSecond, filmFirst) => (parseFloat(filmFirst.comments.length) - parseFloat(filmSecond.comments.length)));
-      filmsComment = filmsComment.slice(BEGIN_PART, END_PART);
-      this.renderCard(mostComment.takeContainer()[RIGHT_SIDE], filmsComment);
+      filmsComment = filmsComment.slice(InstExtraFilm.BEGIN_PART, InstExtraFilm.END_PART);
+      this.renderCard(mostComment.takeContainer()[InstExtraFilm.RIGHT_SIDE], filmsComment);
     };
     topCommentFilm();
     topRatingFilm();

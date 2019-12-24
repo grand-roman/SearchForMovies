@@ -1,18 +1,17 @@
-import {createElement, render, unrender, KeyCode, Position, AUTHORIZATION, END_POINT} from "../utils";
+import {createElement, render, unrender, KeyCode, Position, SIZE_PRESSED_KEY} from "../utils";
 import Comment from "../components/comment";
 import CommentsList from "../components/comment-list";
-import API from "../api";
 import DOMPurify from "dompurify";
 
 export default class CommentsController {
-  constructor(container, dataCard, onDataChange, commentsData) {
+  constructor(container, dataCard, onDataChange, commentsData, api) {
     this._container = container;
     this._dataCard = dataCard;
     this._commentsData = commentsData;
     this._onDataChange = onDataChange;
     this._commentsList = new CommentsList();
     this._commentsNumber = this._container.querySelector(`.film-details__comments-count`);
-    this._api = new API({endPoint: END_POINT, authorization: AUTHORIZATION});
+    this._api = api;
   }
 
   render() {
@@ -55,7 +54,6 @@ export default class CommentsController {
         }
       });
     }
-    const SIZE_PRESSED_KEY = 2;
     if (pressedKey.size === SIZE_PRESSED_KEY) {
       pressedKey.clear();
 

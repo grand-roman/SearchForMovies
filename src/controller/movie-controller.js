@@ -83,7 +83,7 @@ class MovieController {
         this._api.getComments(this._film[i].id).then((comments) => {
 
           popup = new FilmDetails(this._film[i], comments);
-          const commentsController = new CommentsController(popup.getElement(), this._film[i], this._onDataChange, comments);
+          const commentsController = new CommentsController(popup.getElement(), this._film[i], this._onDataChange, comments, this._api);
           commentsController.render();
           getNewMokData(`watched`, popup, this._film[i]);
         });
@@ -93,7 +93,7 @@ class MovieController {
         this._api.getComments(this._film[i].id).then((comments) => {
 
           popup = new FilmDetails(this._film[i], comments);
-          const commentsController = new CommentsController(popup.getElement(), this._film[i], this._onDataChange, comments);
+          const commentsController = new CommentsController(popup.getElement(), this._film[i], this._onDataChange, comments, this._api);
           commentsController.render();
           getNewMokData(`favorite`, popup, this._film[i]);
         });
@@ -103,7 +103,7 @@ class MovieController {
         this._api.getComments(this._film[i].id).then((comments) => {
 
           popup = new FilmDetails(this._film[i], comments);
-          const commentsController = new CommentsController(popup.getElement(), this._film[i], this._onDataChange, comments);
+          const commentsController = new CommentsController(popup.getElement(), this._film[i], this._onDataChange, comments, this._api);
           commentsController.render();
           getNewMokData(`watchlist`, popup, this._film[i]);
         });
@@ -112,7 +112,7 @@ class MovieController {
       film.onToggleFilm = (evt) => {
         this._api.getComments(this._film[i].id).then((comments) => {
           popup = new FilmDetails(this._film[i], comments);
-          const commentsController = new CommentsController(popup.getElement(), this._film[i], this._onDataChange, comments);
+          const commentsController = new CommentsController(popup.getElement(), this._film[i], this._onDataChange, comments, this._api);
           commentsController.render();
           filmToggle(evt, popup, this._film[i]);
         });

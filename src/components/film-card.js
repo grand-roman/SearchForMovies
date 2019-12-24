@@ -1,5 +1,6 @@
 import AbstractComponent from "./abstract-component";
 import moment from "moment";
+import {SHORT_DESCRIPTION} from "../utils";
 
 class FilmCard extends AbstractComponent {
   constructor(card) {
@@ -49,7 +50,6 @@ class FilmCard extends AbstractComponent {
     return this._genre.join(`, `);
   }
   addDescription() {
-    const SHORT_DESCRIPTION = 139;
     let strDesk = this._shortDescription;
     if (this._shortDescription.length > SHORT_DESCRIPTION) {
       strDesk = this._shortDescription.substr(0, SHORT_DESCRIPTION);

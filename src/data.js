@@ -1,6 +1,5 @@
 import {generatorRandom} from './utils';
 
-const generateMenuCount = () => Math.round(generatorRandom.generateRandomNumber(0, 20));
 export const generateRank = () => {
   let count = Math.round(generatorRandom.generateRandomNumber(0, 30));
   let strRank = ``;
@@ -13,5 +12,4 @@ export const generateRank = () => {
   } return strRank;
 };
 
-export const favorites = generateMenuCount();
 
