@@ -1,7 +1,6 @@
 # Личный проект «Киноман» [![Build status][travis-image]][travis-url]
 
 * Студент: [Roman Andreev](https://up.htmlacademy.ru/ecmascript/10/user/590097).
-* Наставник: [Artyom Prikhodko](https://htmlacademy.ru/profile/id1012525).
 
 ---
 
@@ -40,13 +39,4 @@ git clone SSH-адрес_вашего_форка
 
 Команда клонирует репозиторий на ваш компьютер и подготовит всё необходимое для старта работы.
 
-#### 4. Начинайте обучение!
 
----
-
-<a href="https://htmlacademy.ru/intensive/ecmascript"><img align="left" width="50" height="50" title="HTML Academy" src="https://up.htmlacademy.ru/static/img/intensive/ecmascript/logo-for-github.svg"></a>
-
-Репозиторий создан для обучения на интенсивном онлайн‑курсе «[Профессиональный JavaScript, уровень 2](https://htmlacademy.ru/intensive/ecmascript)» от [HTML Academy](https://htmlacademy.ru).
-
-[travis-image]: https://travis-ci.com/htmlacademy-ecmascript/590097-cinemaddict-10.svg?branch=master
-[travis-url]: https://travis-ci.com/htmlacademy-ecmascript/590097-cinemaddict-10
