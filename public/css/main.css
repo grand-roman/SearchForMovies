@@ -86,7 +86,6 @@ button {
   font-weight: 700;
   letter-spacing: 4px;
   text-align: center;
-  text-transform: uppercase;
 }
 
 .logo--smaller {
@@ -115,7 +114,7 @@ button {
 
 .search__field {
   background-color: #121213;
-  border: solid 1px #7171d8;
+  border: solid 1px #ff2400;
   border-radius: 4px;
   box-sizing: border-box;
   color: #f9f9f9;
@@ -172,7 +171,7 @@ button {
   position: absolute;
   top: 50%;
   left: 19%;
-    
+
   width: 20px;
   height: 1px;
 
@@ -266,7 +265,7 @@ button {
   margin-right: 32px;
   padding: 0;
 
-  color: #ffffff;  
+  color: #ffffff;
   text-decoration: none;
 
   background-color: transparent;
@@ -281,7 +280,7 @@ button {
 }
 
 .sort__button--active {
-  color: #ffe800;  
+  color: #ffe800;
 }
 
 .films {
@@ -997,7 +996,7 @@ button {
 }
 .statistic__rank {
   display: flex;
-  align-items: center; 
+  align-items: center;
   margin: 0;
   margin-bottom: 34px;
   font-size: 50px;
